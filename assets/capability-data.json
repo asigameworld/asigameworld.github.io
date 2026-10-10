@@ -1,0 +1,216 @@
+{
+  "source": {
+    "main": "Published main-season table on benchmark page",
+    "dungeon": "assets/tier-performance.pdf, displayed values transcribed",
+    "actions": "assets/action-composition.pdf, proportions recovered from vector bar widths; approximate"
+  },
+  "rows": [
+    {
+      "agent": "claude-opus-5-5",
+      "goals": [
+        "complete",
+        "complete"
+      ],
+      "achievements": 7,
+      "knockdowns": 0,
+      "clear_rate_percent": [
+        81,
+        100,
+        100,
+        100
+      ],
+      "shadow_king_mean_damage": 60,
+      "action_share_approx_percent": {
+        "Production": 41.85,
+        "Construction": 5.03,
+        "Dungeon combat": 10.44,
+        "Maintenance": 10.55,
+        "Movement": 32.14
+      }
+    },
+    {
+      "agent": "gpt-6-astra",
+      "goals": [
+        "complete",
+        "complete"
+      ],
+      "achievements": 8,
+      "knockdowns": 0,
+      "clear_rate_percent": [
+        83,
+        100,
+        100,
+        100
+      ],
+      "shadow_king_mean_damage": 0,
+      "action_share_approx_percent": {
+        "Production": 28.67,
+        "Construction": 6.21,
+        "Dungeon combat": 10.14,
+        "Maintenance": 10.67,
+        "Movement": 44.31
+      }
+    },
+    {
+      "agent": "claude-opus-5",
+      "goals": [
+        "complete",
+        "complete"
+      ],
+      "achievements": 8,
+      "knockdowns": 0,
+      "clear_rate_percent": [
+        81,
+        67,
+        100,
+        100
+      ],
+      "shadow_king_mean_damage": 98,
+      "action_share_approx_percent": {
+        "Production": 17.55,
+        "Construction": 5.43,
+        "Dungeon combat": 13.97,
+        "Maintenance": 8.36,
+        "Movement": 54.69
+      }
+    },
+    {
+      "agent": "deepseek-v4-flash",
+      "goals": [
+        "complete",
+        "complete"
+      ],
+      "achievements": 7,
+      "knockdowns": 3,
+      "clear_rate_percent": [
+        73,
+        22,
+        56,
+        100
+      ],
+      "shadow_king_mean_damage": 92,
+      "action_share_approx_percent": {
+        "Production": 3.5,
+        "Construction": 1.87,
+        "Dungeon combat": 18.53,
+        "Maintenance": 2.69,
+        "Movement": 73.41
+      }
+    },
+    {
+      "agent": "glm-5.3",
+      "goals": [
+        "complete",
+        "complete"
+      ],
+      "achievements": 6,
+      "knockdowns": 1,
+      "clear_rate_percent": [
+        66,
+        60,
+        100,
+        100
+      ],
+      "shadow_king_mean_damage": 127,
+      "action_share_approx_percent": {
+        "Production": 14.31,
+        "Construction": 5.25,
+        "Dungeon combat": 12.35,
+        "Maintenance": 9.52,
+        "Movement": 58.57
+      }
+    },
+    {
+      "agent": "kimi-k3",
+      "goals": [
+        "complete",
+        "complete"
+      ],
+      "achievements": 7,
+      "knockdowns": 0,
+      "clear_rate_percent": [
+        58,
+        67,
+        100,
+        75
+      ],
+      "shadow_king_mean_damage": 154,
+      "action_share_approx_percent": {
+        "Production": 16.47,
+        "Construction": 7.79,
+        "Dungeon combat": 32.06,
+        "Maintenance": 8.5,
+        "Movement": 35.16
+      }
+    },
+    {
+      "agent": "gemini-3.8-flash",
+      "goals": [
+        "complete",
+        "unmet"
+      ],
+      "achievements": 3,
+      "knockdowns": 0,
+      "clear_rate_percent": [
+        61,
+        67,
+        100,
+        75
+      ],
+      "shadow_king_mean_damage": 82,
+      "action_share_approx_percent": {
+        "Production": 24.24,
+        "Construction": 6.4,
+        "Dungeon combat": 3.1,
+        "Maintenance": 7.86,
+        "Movement": 58.4
+      }
+    },
+    {
+      "agent": "gpt-6-sol",
+      "goals": [
+        "complete",
+        "unmet"
+      ],
+      "achievements": 3,
+      "knockdowns": 0,
+      "clear_rate_percent": [
+        58,
+        25,
+        83,
+        67
+      ],
+      "shadow_king_mean_damage": 173,
+      "action_share_approx_percent": {
+        "Production": 18.46,
+        "Construction": 8.9,
+        "Dungeon combat": 5.71,
+        "Maintenance": 12.75,
+        "Movement": 54.18
+      }
+    },
+    {
+      "agent": "gpt-6-luna",
+      "goals": [
+        "unmet",
+        "unmet"
+      ],
+      "achievements": 1,
+      "knockdowns": 1,
+      "clear_rate_percent": [
+        6,
+        0,
+        null,
+        null
+      ],
+      "shadow_king_mean_damage": null,
+      "action_share_approx_percent": {
+        "Production": 18.52,
+        "Construction": 8.52,
+        "Dungeon combat": 3.95,
+        "Maintenance": 13.17,
+        "Movement": 55.84
+      }
+    }
+  ]
+}

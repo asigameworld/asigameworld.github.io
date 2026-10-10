@@ -18,6 +18,7 @@ This is a static site with no build step or package dependencies.
 - `home.css`: homepage layout and responsive design.
 - `style.css`: benchmark layout.
 - `theme.css`: shared monochrome pixel theme aligned with the game website.
+- `assets/capability-data.json`: provenance and values used in the capability teaser. Main-season outcomes and achievements retain the manuscript values; dungeon values are transcribed from the published figure. Action proportions are approximate, recovered from the vector bar widths in `action-composition.pdf`.
 - `assets/fonts/`: Fusion Pixel font and its OFL license.
 - `assets/`: figures, favicon, and `game-scene.jpg`, captured from the public recorded gameplay on asigameworld.com. Benchmark figures are adapted from the current manuscript.
 
