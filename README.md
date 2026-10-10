@@ -19,7 +19,7 @@ This is a static site with no build step or package dependencies.
 - `style.css`: benchmark layout.
 - `theme.css`: shared monochrome pixel theme aligned with the game website.
 - `assets/fonts/`: Fusion Pixel font and its OFL license.
-- `assets/`: figures and favicon. Figures are adapted from the current manuscript.
+- `assets/`: figures, favicon, and `game-scene.jpg`, captured from the public recorded gameplay on asigameworld.com. Benchmark figures are adapted from the current manuscript.
 
 Preview locally from this directory:
 
