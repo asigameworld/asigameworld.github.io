@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ASIWorld studies sustained goal execution by autonomous agents in a persistent survival sandbox.">
+  <meta name="theme-color" content="#185b46">
+  <link rel="canonical" href="https://asigameworld.github.io/benchmark/">
+  <title>ASIWorld — A Persistent Survival Sandbox</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css?v=5">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="ASIWorld home"><span class="brand-mark" aria-hidden="true">A</span>ASIWorld</a>
+    <nav aria-label="Main navigation"><a href="#overview">Overview</a><a href="#tasks">Tasks</a><a href="#evaluation">Evaluation</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="title">
+      <h1 id="title"><span class="project-name">ASIWorld</span><span class="paper-title">Benchmarking Autonomous Agents<br>in a Persistent Survival Sandbox</span></h1>
+      <p class="authors">Jianfeng Lin<sup>1,2,*</sup> <span>Runze Wang<sup>1,3,*</sup></span> <span>Haorong Hong<sup>1,*</sup></span><br>Yuxuan Xie<sup>1</sup> <span>Zeno Zeng<sup>4</sup></span> <span>Zhongyuan Liu<sup>1,†</sup></span></p>
+      <div class="affiliations"><span><sup>1</sup> Lightspeed Studios, Tencent</span><span><sup>2</sup> HKUST</span><span><sup>3</sup> USTC</span><span><sup>4</sup> Hunyuan Team, Tencent</span></div>
+      <p class="author-note">* Equal contribution &nbsp; · &nbsp; † Corresponding author</p>
+      <div class="hero-actions" aria-label="Research resources">
+        <span class="resource-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7zM14 3v5h4M10 12h5M10 16h5"/></svg><strong>Paper</strong><span>Coming soon</span></span>
+        <span class="resource-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg><strong>Code</strong><span>Coming soon</span></span>
+      </div>
+    </section>
+    <section class="overview section" id="overview" aria-labelledby="overview-title">
+      <figure class="wide-figure teaser"><a href="/assets/overview.webp" target="_blank" rel="noopener" aria-label="Open the ASIWorld overview figure at full size"><img src="/assets/overview.webp" width="1860" height="846" alt="ASIWorld overview: a persistent survival world, an agent harness with asynchronous program execution, and evaluation using execution records and world state." fetchpriority="high"></a><figcaption>ASIWorld connects persistent world state, asynchronous agent execution, and evaluation of outcomes, achievements, and costs.</figcaption></figure>
+      <div class="section-heading centered"><h2 id="overview-title">Overview</h2></div>
+      <p class="abstract"><strong>ASIWorld</strong> evaluates autonomous agents in a persistent survival sandbox. Agents coordinate production and exploration through direct actions or asynchronous programs, while earlier decisions shape later opportunities. Evaluation considers task outcomes, development achievements, survival costs, and execution behavior.</p>
+    </section>
+    <section class="tasks section" id="tasks" aria-labelledby="tasks-title">
+      <div class="section-heading centered"><h2 id="tasks-title">Benchmark Tasks</h2><p>Two task families test coordinated execution through dependencies, preparation, and changing world state.</p></div>
+      <figure class="wide-figure"><a href="/assets/tasks.webp" target="_blank" rel="noopener" aria-label="Open the benchmark task figure at full size"><img src="/assets/tasks.webp" width="1774" height="887" alt="Production and exploration task paths, with resource and crafting dependencies, dungeon tiers, and additional attainment requirements." loading="lazy"></a><figcaption>Task paths and additional attainment criteria in the production and exploration evaluations.</figcaption></figure>
+    </section>
+    <section class="evaluation section" id="evaluation" aria-labelledby="evaluation-title">
+      <div class="section-heading centered"><h2 id="evaluation-title">Evaluation</h2><p>Assessing whether agents achieve their goals, how far they progress, and what attainment costs.</p></div>
+      <div class="results" id="results">
+        <h3>Main evaluation results</h3>
+        <p class="results-scope">One season · 300 simulation minutes · Common Claude Code harness</p>
+        <p class="results-summary"><strong>8/9</strong> configurations complete production; <strong>6/9</strong> complete both production and exploration.</p>
+        <div class="table-wrapper results-wrapper" role="region" aria-label="Main evaluation results, scroll horizontally on small screens" tabindex="0">
+          <table class="results-table"><caption>Main-season outcomes for nine agent configurations, as reported in the manuscript</caption>
+            <thead><tr><th scope="col">Configuration</th><th scope="col">Production</th><th scope="col">Exploration</th><th scope="col">Achievements</th><th scope="col">Knockdowns</th></tr></thead>
+            <tbody>
+            <tr><th scope="row">claude-opus-5-5</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>7/8</td><td>0</td></tr>
+            <tr><th scope="row">gpt-6-astra</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>8/8</td><td>0</td></tr>
+            <tr><th scope="row">claude-opus-5</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>8/8</td><td>0</td></tr>
+            <tr><th scope="row">deepseek-v4-flash</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>7/8</td><td>3</td></tr>
+            <tr><th scope="row">glm-5.3</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>6/8</td><td>1</td></tr>
+            <tr><th scope="row">kimi-k3</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>7/8</td><td>0</td></tr>
+            <tr><th scope="row">gemini-3.8-flash</th><td><span class="outcome success">Yes</span></td><td><span class="outcome incomplete">No</span></td><td>3/8</td><td>0</td></tr>
+            <tr><th scope="row">gpt-6-sol</th><td><span class="outcome success">Yes</span></td><td><span class="outcome incomplete">No</span></td><td>3/8</td><td>0</td></tr>
+            <tr><th scope="row">gpt-6-luna</th><td><span class="outcome incomplete">No</span></td><td><span class="outcome incomplete">No</span></td><td>1/8</td><td>1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="results-note">Production: travel outfit completed. Exploration: Shadow King defeated. Achievements are assessed independently (out of 8); knockdowns indicate survival costs.</p>
+        <figure class="wide-figure result-figure">
+          <h3>Dungeon performance</h3>
+          <a href="/assets/tier-performance.pdf" target="_blank" rel="noopener" aria-label="Open the original dungeon performance figure as a PDF"><img src="/assets/tier-performance.png" width="2200" height="1320" alt="Two heatmaps from the manuscript showing clear rate and damage taken per clear for nine configurations across Outer Court, Inner Temple, Royal Tomb, and Shadow King." loading="lazy"></a>
+          <figcaption>Across three seasons: boss defeat rate per attempt (left) and mean damage taken in successful clears (right).</figcaption>
+        </figure>
+        <figure class="wide-figure result-figure">
+          <h3>Action composition</h3>
+          <a href="/assets/action-composition.pdf" target="_blank" rel="noopener" aria-label="Open the original action composition figure as a PDF"><img src="/assets/action-composition.png" width="2200" height="1016" alt="Stacked bars from the manuscript showing the share of executed actions devoted to production, construction, dungeon combat, maintenance, and movement in the main season." loading="lazy"></a>
+          <figcaption>Share of executed game actions by category in the main evaluation season.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+  <footer><a class="brand" href="#">ASIWorld</a></footer>
+</body>
+</html>
