@@ -9,7 +9,10 @@
   <title>ASIWorld — A Persistent Survival Sandbox</title>
   <link rel="icon" href="/assets/favicon.svg?v=3" type="image/svg+xml">
   <link rel="stylesheet" href="/style.css?v=8">
-<link rel="stylesheet" href="/theme.css?v=7"></head>
+<link rel="stylesheet" href="/theme.css?v=7">
+  <link rel="stylesheet" href="/benchmark/hero.css?v=4">
+  <link rel="preload" as="image" href="/assets/agent-journeys-light.jpg">
+</head>
 <body class="benchmark-page">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
@@ -17,7 +20,8 @@
     <nav aria-label="Main navigation"><a href="#results">Results</a><a href="#overview">Overview</a><a href="#tasks">Tasks</a><a href="#evaluation">Evaluation</a></nav>
   </header>
   <main id="main">
-    <section class="hero" aria-labelledby="title">
+    <section class="hero journey-hero" aria-labelledby="title">
+      <div class="journey-copy">
       <h1 id="title"><span class="project-name">ASIWorld</span><span class="paper-title">Benchmarking Autonomous Agents<br>in a Persistent Survival Sandbox</span></h1>
       <p class="authors">Jianfeng Lin<sup>1,2,*</sup> <span>Runze Wang<sup>1,3,*</sup></span> <span>Haorong Hong<sup>1,*</sup></span><br>Yuxuan Xie<sup>1</sup> <span>Zeno Zeng<sup>4</sup></span> <span>Zhongyuan Liu<sup>1,†</sup></span></p>
       <div class="affiliations"><span><sup>1</sup> Lightspeed Studios, Tencent</span><span><sup>2</sup> HKUST</span><span><sup>3</sup> USTC</span><span><sup>4</sup> Hunyuan Team, Tencent</span></div>
@@ -27,6 +31,13 @@
         <span class="resource-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7zM14 3v5h4M10 12h5M10 16h5"/></svg><strong>Paper</strong><span>Coming soon</span></span>
         <span class="resource-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg><strong>Code</strong><span>Coming soon</span></span>
       </div>
+      </div>
+      <figure class="journey-scene">
+        <a class="journey-full" href="/assets/agent-journeys-light.jpg" target="_blank" rel="noopener" aria-label="View the full agent journey illustration">
+          <img class="journey-background" src="/assets/agent-journeys-light.jpg" width="1672" height="941" fetchpriority="high" alt="Illustrated agent journeys through a voxel world: Gemini at a workshop, Kimi at a bridge, GLM and DeepSeek in the ruins, and white-clad GPT and orange-clad Claude in the final battle arena. Positions are illustrative, not measured trajectories.">
+          <span class="journey-expand" aria-hidden="true">↗</span>
+        </a>
+      </figure>
     </section>
     <section class="leaderboard section" aria-labelledby="leaderboard-title">
       <div class="results" id="results">

@@ -1,0 +1,27 @@
+/* The transparent miniature world belongs to the page, without a screenshot frame. */
+.home-page { --paper: #fafaf7; background: var(--paper); }
+.home-page header { background: transparent; }
+.home-page main { max-width: 1360px; grid-template-columns: .95fr 1.25fr; gap: 24px; padding: 56px 40px 80px; }
+.home-page h1 { color: #244a3d; }
+.home-page .visual { background: transparent; border: 0; box-shadow: none; }
+.home-page .visual img { display: block; width: 100%; height: auto; margin: 0; }
+.home-page .button, .home-page button.guide { border-width: 1px; border-radius: 4px; box-shadow: none; }
+.home-page .primary { background: #244a3d; border-color: #244a3d; }
+.home-page .primary:hover { background: #183b2f; }
+.home-page .actions { gap: 10px; }
+@media (max-width: 1000px) {
+  .home-page main { grid-template-columns: 1fr; padding: 36px 24px 48px; gap: 20px; }
+  .home-page .copy { max-width: 620px; margin: auto; width: 100%; }
+  .home-page .visual { grid-row: 2; max-width: 680px; margin: 0 auto; width: 100%; }
+  .home-page h1 span { display: inline; }
+  .home-page h2 br { display: none; }
+  .home-page p { max-width: 600px; }
+}
+@media (max-width: 460px) {
+  .home-page main { padding: 28px 22px 36px; }
+  .home-page h1 { font-size: 36px; }
+  .home-page h1 span { display: block; }
+  .home-page h2 { font-size: 23px; }
+  .home-page .button, .home-page button.guide { padding: 10px 12px; }
+  .home-page .visual { margin-top: 0; }
+}

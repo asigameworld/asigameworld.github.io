@@ -1,0 +1,42 @@
+/* A compact academic masthead opens into the complete illustrated world. */
+.benchmark-page { --paper: #fafaf7; background: var(--paper); }
+.benchmark-page .site-header { max-width: 1200px; background: var(--paper); }
+.benchmark-page .journey-hero {
+  max-width: 1248px;
+  padding: 36px 24px 0;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+.journey-copy { max-width: 940px; margin: 0 auto; }
+.journey-copy .project-name { font-size: clamp(40px, 4vw, 56px); margin-bottom: 10px; color: #244a3d; }
+.journey-copy .paper-title { font-size: clamp(24px, 2.3vw, 32px); line-height: 1.32; }
+.benchmark-page .journey-copy h1 { margin-bottom: 16px; }
+.journey-copy .authors { font-size: 13px; line-height: 1.85; margin: 0 0 7px; }
+.journey-copy .authors span { margin-left: 12px; }
+.journey-copy .affiliations { justify-content: center; font-size: 11px; gap: 4px 16px; }
+.journey-copy .author-note { font-size: 10px; margin: 8px 0 18px; }
+.journey-copy .hero-actions { justify-content: center; gap: 10px; }
+.journey-copy .resource-pill { min-height: 40px; padding: 8px 14px; border: 1px solid #dce2dc; border-radius: 4px; box-shadow: none; }
+.journey-copy .play-link { background: #244a3d; border-color: #244a3d; }
+.journey-copy .play-link:hover { background: #183b2f; }
+.journey-copy .resource-pill:not(.play-link) { background: #fff; }
+.journey-scene { max-width: 1120px; margin: 28px auto 0; }
+.journey-full { position: relative; display: block; overflow: hidden; border-radius: 0; background: transparent; }
+.journey-background { display: block; width: 100%; height: auto; }
+.journey-expand { position: absolute; z-index: 1; right: 14px; bottom: 14px; width: 32px; height: 32px; display: grid; place-items: center; background: #fffffff0; color: #244a3d; border: 1px solid #fff; border-radius: 5px; font-size: 19px; transition: background .15s; }
+.journey-full:hover .journey-expand { background: #fff; }
+.journey-full:focus-visible { outline: 3px solid #244a3d; outline-offset: 5px; }
+@media (max-width: 650px) {
+  .benchmark-page .site-header { flex-wrap: wrap; justify-content: center; gap: 14px; padding: 18px; }
+  .benchmark-page .site-header nav { gap: 18px; flex-wrap: wrap; justify-content: center; }
+  .benchmark-page .journey-hero { padding: 28px 18px 0; margin-bottom: 36px; }
+  .journey-copy .paper-title { font-size: 23px; }
+  .journey-copy .authors { font-size: 12px; }
+  .journey-copy .authors span { margin-left: 7px; }
+  .journey-copy .affiliations { font-size: 10px; gap: 3px 9px; }
+  .journey-copy .hero-actions { gap: 7px; }
+  .journey-copy .resource-pill { padding: 8px 10px; gap: 6px; }
+  .journey-scene { margin: 24px -6px 0; }
+
+  .journey-expand { width: 26px; height: 26px; right: 8px; bottom: 8px; font-size: 16px; }
+}
