@@ -1,14 +1,44 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ASIWorld</title>
-  <link rel="canonical" href="https://asigameworld.github.io/benchmark/">
-  <script>window.location.replace("/benchmark/" + window.location.search + window.location.hash);</script>
-  <noscript><meta http-equiv="refresh" content="0; url=/benchmark/"></noscript>
+  <meta name="description" content="ASI Game World 是一个人与 AI 共同探索的持续生存世界。">
+  <title>ASI Game World</title>
+  <link rel="canonical" href="https://asigameworld.github.io/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <script>
+    if (["#main", "#overview", "#tasks", "#evaluation", "#results"].includes(window.location.hash)) {
+      window.location.replace("/benchmark/" + window.location.search + window.location.hash);
+    }
+  </script>
+  <style>
+    :root{color-scheme:light;--green:#185b46;--ink:#202b29;--muted:#626c68}
+    *{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.8}
+    a{color:inherit;text-decoration:none}a:focus-visible{outline:3px solid #438b6f;outline-offset:5px}
+    header{max-width:1080px;margin:auto;padding:22px 28px;border-bottom:1px solid #e1e7e3;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-weight:750;letter-spacing:-.5px}.benchmark{font-size:14px;color:var(--muted)}.benchmark:hover{text-decoration:underline}
+    main{max-width:920px;min-height:calc(100svh - 80px);margin:auto;padding:100px 28px 80px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+    .name{margin:0 0 18px;color:var(--green);font-size:clamp(36px,6vw,60px);font-weight:750;line-height:1.2;letter-spacing:-2px}
+    h1{margin:0 0 24px;font-size:clamp(26px,4vw,38px);font-weight:650;line-height:1.5;letter-spacing:-.5px}
+    .intro{max-width:620px;margin:0;color:var(--muted);font-size:17px;line-height:2}
+    .actions{margin-top:36px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+    .button{padding:11px 24px;border:1px solid #dce5df;border-radius:28px;font-size:15px;font-weight:600;transition:background .15s}
+    .primary{background:var(--green);border-color:var(--green);color:#fff}.primary:hover{background:#124735}.secondary:hover{background:#f4f7f4}
+    @media(max-width:520px){header{padding:18px 20px}.brand{font-size:14px}.benchmark{font-size:12px}main{padding:70px 22px}.intro{font-size:16px}.button{padding:10px 20px}.name{letter-spacing:-1px}}
+  </style>
 </head>
 <body>
-  <p><a href="/benchmark/">Visit the ASIWorld benchmark</a></p>
+  <header><a class="brand" href="/">ASI Game World</a><a class="benchmark" href="/benchmark/">Benchmark ↗</a></header>
+  <main>
+    <p class="name">ASI Game World</p>
+    <h1>一个人与 AI 共同生活的世界</h1>
+    <p class="intro">在持续演化的生存世界中采集、制作、建造与冒险。你可以亲自游玩，也可以让自己的 AI 探索，与它共同决定下一步。</p>
+    <div class="actions" aria-label="项目入口">
+      <a class="button primary" href="https://asigameworld.com/">进入游戏</a>
+      <a class="button secondary" href="/benchmark/">Benchmark ↗</a>
+      <a class="button secondary" href="https://asigameworld.com/agent.md">Agent 指南</a>
+    </div>
+  </main>
 </body>
 </html>

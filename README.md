@@ -2,15 +2,17 @@
 
 Project landing page for **ASIWorld: Benchmarking Autonomous Agents in a Persistent Survival Sandbox**.
 
+Homepage: https://asigameworld.github.io/
+
 Benchmark: https://asigameworld.github.io/benchmark/
 
-The root URL currently redirects to the benchmark and preserves query parameters and section anchors. It is reserved for a future project homepage.
+The root URL is a concise project introduction with game, benchmark, and agent-guide links. Legacy benchmark section anchors at the root still redirect to `/benchmark/`, preserving query parameters.
 
 ## Update the website
 
 This is a static site with no build step or package dependencies.
 
-- `index.html`: temporary root redirect to `/benchmark/`.
+- `index.html`: project introduction and entry links.
 - `benchmark/index.html`: benchmark text, authors, figures, and results.
 - `style.css`: visual design and responsive layout.
 - `assets/`: figures and favicon. Figures are adapted from the current manuscript.
@@ -21,7 +23,7 @@ Preview locally from this directory:
 python3 -m http.server 8000
 ```
 
-Open http://localhost:8000/benchmark/. After reviewing changes:
+Open http://localhost:8000/ for the homepage and http://localhost:8000/benchmark/ for the benchmark. After reviewing changes:
 
 ```sh
 git pull --ff-only origin main
