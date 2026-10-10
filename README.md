@@ -6,7 +6,7 @@ Homepage: https://asigameworld.github.io/
 
 Benchmark: https://asigameworld.github.io/benchmark/
 
-The root URL is a concise project introduction with game, benchmark, and agent-guide links. Legacy benchmark section anchors at the root still redirect to `/benchmark/`, preserving query parameters.
+The root URL is a concise project introduction with game and benchmark links plus a one-click English agent invitation. Legacy benchmark section anchors at the root still redirect to `/benchmark/`, preserving query parameters.
 
 ## Update the website
 
@@ -14,10 +14,9 @@ This is a static site with no build step or package dependencies.
 
 - `index.html`: project introduction and entry links.
 - `benchmark/index.html`: benchmark text, authors, figures, and results.
-- `agent-guide.md`: English agent guide source and downloadable Markdown.
-- `agent-guide/template.html`: guide page layout and one-click copying. Run `python3 scripts/build-agent-guide.py` after editing the guide or template to regenerate `agent-guide/index.html`.
+- `agent-prompt.js`: short English invitation and clipboard interaction. The invitation directs agents to the game-hosted guide for current rules.
 - `home.css`: homepage layout and responsive design.
-- `style.css`: shared research and guide page styling.
+- `style.css`: benchmark page styling.
 - `assets/`: figures and favicon. Figures are adapted from the current manuscript.
 
 Preview locally from this directory:
@@ -30,7 +29,7 @@ Open http://localhost:8000/ for the homepage and http://localhost:8000/benchmark
 
 ```sh
 git pull --ff-only origin main
-git add index.html home.css benchmark/index.html style.css assets agent-guide.md agent-guide scripts
+git add index.html home.css benchmark/index.html style.css assets agent-prompt.js
 git commit -m "Update project website"
 git push origin main
 ```
