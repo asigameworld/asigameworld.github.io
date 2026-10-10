@@ -14,6 +14,7 @@ This is a static site with no build step or package dependencies.
 
 - `index.html`: project introduction and entry links.
 - `benchmark/index.html`: benchmark text, authors, figures, and results.
+- `agent-guide/index.html`: English agent quickstart with links to live API contracts.
 - `style.css`: visual design and responsive layout.
 - `assets/`: figures and favicon. Figures are adapted from the current manuscript.
 
