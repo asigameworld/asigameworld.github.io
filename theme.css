@@ -141,6 +141,37 @@ button.guide { padding: 12px 16px; }
 .mix-legend { flex-wrap: wrap; gap: 12px; }
 .capability-key i { display: inline-block; width: 8px; height: 8px; flex-shrink: 0; }
 .key-square { background: #276451; }
+/* Capability teaser: three distinct dimensions, with local model brand marks. */
+.capability-wrapper { border-color: #dce3de; background: #fff; }
+.capability-table thead tr:first-child > th { border-bottom: 0; padding-top: 18px; padding-bottom: 12px; background: #f8faf8; }
+.capability-table thead tr:first-child > th:nth-child(3) { background: #f1f6f3; }
+.capability-table thead tr:first-child > th:last-child { background: #f5f3f8; }
+.dimension-label { display: flex; align-items: center; justify-content: center; gap: 7px; color: #253e33; font-size: 12px; }
+.dimension-label > span { font-family: "Fusion Pixel", monospace; color: #84988c; font-size: 12px; }
+.capability-table thead small { display: block; font-size: 10px; font-weight: 400; color: #859089; margin-top: 4px; }
+.capability-table thead tr:last-child th { background: #f8faf8; padding-top: 4px; padding-bottom: 14px; }
+.capability-table thead tr:last-child th:nth-child(n+3) { background: #f1f6f3; }
+.capability-table tbody tr > * { border-color: #edf0ed; }
+.capability-table tbody tr:hover { background: #f5f8f5; }
+.agent-identity { display: flex; align-items: center; gap: 10px; }
+.model-icon { width: 32px; height: 32px; background: #fff; border: 1px solid #e8eae7; display: grid; place-items: center; flex-shrink: 0; }
+.model-icon img { width: 24px; height: 24px; object-fit: contain; }
+.capability-table tbody th { font-size: 13px; letter-spacing: -.3px; }
+.capability-table tbody th, .capability-table tbody td { padding-top: 6px; padding-bottom: 6px; }
+.model-icon.icon-kimi { background: #17191e; border-color: #17191e; }
+.capability-table .clear-heat { gap: 4px; }
+.heat-cell { height: 30px; font-size: 12px; font-weight: 600; }
+.capability-table .achievement-blocks i { height: 18px; }
+.capability-table .boss-damage { gap: 10px; }
+.damage-meter { height: 10px; background: #f4eee6; }
+.damage-meter > span { background: #ba8552; }
+.action-mix { height: 22px; }
+.capability-key { padding: 16px 0 0; margin-top: 0; font-size: 11px; line-height: 1.6; }
+.teaser-method { margin-top: 12px; font-size: 12px; color: var(--muted); }
+.teaser-method summary { cursor: pointer; width: fit-content; padding: 6px 0; }
+.teaser-method summary:hover { color: var(--ink); }
+.teaser-method summary:focus-visible { outline: 2px solid #52525b; outline-offset: 4px; }
+.teaser-method .results-note { margin-top: 8px; }
 footer .brand { font-weight: 400; }
 @media(max-width:800px) {
   .home-page main { grid-template-columns: 1fr; padding: 40px 24px 60px; gap: 32px; }
