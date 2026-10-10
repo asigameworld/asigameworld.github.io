@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#185b46"/><text x="32" y="47" text-anchor="middle" fill="#fff" font-family="Georgia,serif" font-size="48">A</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>ASIWorld</title>
+  <rect width="64" height="64" rx="15" fill="#185b46"/>
+  <path d="M32 10 52 21 32 32 12 21Z" fill="#f4fff6"/>
+  <path d="M12 24 30.5 34.2V54L12 43.5Z" fill="#b7e1c7"/>
+  <path d="M52 24 33.5 34.2V54L52 43.5Z" fill="#78b896"/>
+</svg>
