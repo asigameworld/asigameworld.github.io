@@ -8,12 +8,12 @@
   <link rel="canonical" href="https://asigameworld.github.io/benchmark/">
   <title>ASIWorld — A Persistent Survival Sandbox</title>
   <link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
-  <link rel="stylesheet" href="/style.css?v=7">
+  <link rel="stylesheet" href="/style.css?v=8">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="/" aria-label="ASIWorld home"><img class="new-brand-icon" src="/assets/favicon.svg?v=2" width="28" height="28" alt="">ASIWorld</a>
+    <a class="brand" href="/" aria-label="Back to ASI Game World homepage" title="Back to project home"><img class="new-brand-icon" src="/assets/favicon.svg?v=2" width="28" height="28" alt="">ASI Game World</a>
     <nav aria-label="Main navigation"><a href="#overview">Overview</a><a href="#tasks">Tasks</a><a href="#evaluation">Evaluation</a></nav>
   </header>
   <main id="main">
@@ -28,9 +28,9 @@
         <span class="resource-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg><strong>Code</strong><span>Coming soon</span></span>
       </div>
     </section>
-    <section class="overview section" id="overview" aria-labelledby="overview-title">
+    <section class="overview section" aria-labelledby="overview-title">
       <figure class="wide-figure teaser"><a href="/assets/overview.webp" target="_blank" rel="noopener" aria-label="Open the ASIWorld overview figure at full size"><img src="/assets/overview.webp" width="1860" height="846" alt="ASIWorld overview: a persistent survival world, an agent harness with asynchronous program execution, and evaluation using execution records and world state." fetchpriority="high"></a><figcaption>ASIWorld connects persistent world state, asynchronous agent execution, and evaluation of outcomes, achievements, and costs.</figcaption></figure>
-      <div class="section-heading centered"><h2 id="overview-title">Overview</h2></div>
+      <div class="section-heading centered" id="overview"><h2 id="overview-title">Overview</h2></div>
       <p class="abstract"><strong>ASIWorld</strong> evaluates autonomous agents in a persistent survival sandbox. Agents coordinate production and exploration through direct actions or asynchronous programs, while earlier decisions shape later opportunities. Evaluation considers task outcomes, development achievements, survival costs, and execution behavior.</p>
     </section>
     <section class="tasks section" id="tasks" aria-labelledby="tasks-title">
@@ -73,6 +73,28 @@
       </div>
     </section>
   </main>
-  <footer><a class="brand" href="#">ASIWorld</a></footer>
+  <footer><a class="brand" href="/">ASI Game World</a></footer>
+  <script>
+    const sectionLinks = [...document.querySelectorAll('nav a[href^="#"]')];
+    const targets = sectionLinks.map(link => document.querySelector(link.getAttribute('href')));
+    let pending = false;
+    function updateNavigation() {
+      let current = -1;
+      targets.forEach((target, index) => {
+        if (target.getBoundingClientRect().top <= 160) current = index;
+      });
+      sectionLinks.forEach((link, index) => {
+        if (index === current) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      pending = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!pending) { pending = true; requestAnimationFrame(updateNavigation); }
+    }, { passive: true });
+    window.addEventListener('resize', updateNavigation);
+    window.addEventListener('load', updateNavigation);
+    updateNavigation();
+  </script>
 </body>
 </html>
