@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 44">
+  <title>ASI Game World</title>
+  <g stroke="#18181b" stroke-width="2">
+    <path d="M20 2 38 12v20L20 42 2 32V12Z" fill="#f0f0f1"/>
+    <path d="m2 12 18 10 18-10M20 22v20m-9-25 18-10M11 17v10l9 5 9-5V17" fill="none"/>
+  </g>
+</svg>

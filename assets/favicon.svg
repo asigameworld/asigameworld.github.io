@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <title>ASIWorld</title>
-  <rect width="64" height="64" rx="15" fill="#185b46"/>
-  <path d="M32 10 52 21 32 32 12 21Z" fill="#f4fff6"/>
-  <path d="M12 24 30.5 34.2V54L12 43.5Z" fill="#b7e1c7"/>
-  <path d="M52 24 33.5 34.2V54L52 43.5Z" fill="#78b896"/>
+  <rect width="64" height="64" fill="#f5f5f5"/>
+  <g transform="translate(7 4) scale(1.25)" stroke="#18181b" stroke-width="2.4">
+    <path d="M20 2 38 12v20L20 42 2 32V12Z" fill="#f0f0f1"/>
+    <path d="m2 12 18 10 18-10M20 22v20m-9-25 18-10M11 17v10l9 5 9-5V17" fill="none"/>
+  </g>
 </svg>

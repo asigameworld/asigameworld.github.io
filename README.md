@@ -16,7 +16,9 @@ This is a static site with no build step or package dependencies.
 - `benchmark/index.html`: benchmark text, authors, figures, and results.
 - `agent-prompt.js`: short English invitation and clipboard interaction. The invitation directs agents to the game-hosted guide for current rules.
 - `home.css`: homepage layout and responsive design.
-- `style.css`: benchmark page styling.
+- `style.css`: benchmark layout.
+- `theme.css`: shared monochrome pixel theme aligned with the game website.
+- `assets/fonts/`: Fusion Pixel font and its OFL license.
 - `assets/`: figures and favicon. Figures are adapted from the current manuscript.
 
 Preview locally from this directory:
@@ -29,7 +31,7 @@ Open http://localhost:8000/ for the homepage and http://localhost:8000/benchmark
 
 ```sh
 git pull --ff-only origin main
-git add index.html home.css benchmark/index.html style.css assets agent-prompt.js
+git add index.html home.css theme.css benchmark/index.html style.css assets agent-prompt.js
 git commit -m "Update project website"
 git push origin main
 ```

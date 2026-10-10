@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "Fusion Pixel";
+  src: url("/assets/fonts/fusion-pixel.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+:root {
+  --paper: #f5f5f5;
+  --ink: #18181b;
+  --green: #18181b;
+  --muted: #606066;
+  --line: #e1e1e5;
+  --soft: #f0f0f1;
+  --panel-shadow: 4px 4px 0 rgb(24 24 27 / 15%);
+}
+body { background: var(--paper); color: var(--ink); font-family: "Fusion Pixel", monospace; }
+body::before { background: none; }
+a:focus-visible, button:focus-visible { outline-color: #52525b; }
+.brand { font-size: 12px; font-weight: 400; letter-spacing: 0; gap: 12px; }
+.brand img, .new-brand-icon { width: 36px; height: 40px; flex-shrink: 0; }
+.brand-name { display: flex; flex-direction: column; line-height: 18px; }
+.brand-name span { font-weight: 400; }
+nav { font-size: 12px; }
+h1, h2, h3 { letter-spacing: 0; font-weight: 400; }
+.home-page header { max-width: 1280px; padding: 20px 32px; min-height: 88px; border-bottom: 1px solid var(--line); }
+.home-page main { max-width: 1280px; gap: 40px; grid-template-columns: 1fr 1.15fr; padding: 48px 32px 72px; }
+.home-page h1 { font-size: 48px; line-height: 1.3; letter-spacing: 0; font-weight: 400; }
+.home-page h2 { font-size: 24px; line-height: 1.5; letter-spacing: 0; font-weight: 400; }
+.home-page p { font-size: 16px; line-height: 1.85; }
+.home-page .visual { background: #fff; border: 2px solid var(--line); box-shadow: var(--panel-shadow); }
+.home-page .visual img { width: 100%; margin: 0; }
+.button, .resource-pill, button.guide { font-family: inherit; border-radius: 0; font-size: 12px; font-weight: 400; border: 2px solid var(--line); min-height: 44px; box-shadow: var(--panel-shadow); transition: background 160ms, transform 90ms, box-shadow 90ms; }
+.primary, .play-link { background: #18181b; border-color: #18181b; color: #fafafa; }
+.primary:hover, .play-link:hover { background: #27272a; border-color: #27272a; }
+.secondary, button.guide, .resource-pill:not(.play-link) { background: #fff; color: var(--ink); }
+.secondary:hover, button.guide:hover { background: #f0f0f1; }
+.button:hover { transform: none; }
+.button:active, button.guide:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 rgb(24 24 27 / 15%); }
+button.guide { padding: 12px 16px; }
+.copy-status { font-size: 12px; }
+#prompt-fallback { border-radius: 0; font-family: inherit; border-color: var(--line); color: var(--ink); }
+.site-header { background: #f5f5f5; }
+.site-header .brand { font-size: 12px; }
+.site-header nav a { border-radius: 0; font-size: 12px; font-weight: 400; }
+.site-header nav a:hover, .site-header nav a[aria-current="location"] { background: #e9e9ec; color: var(--ink); font-weight: 400; }
+.project-name { color: var(--ink); font-size: 48px; letter-spacing: 0; }
+.paper-title { font-size: 36px; font-weight: 400; letter-spacing: 0; }
+.resource-pill strong { font-weight: 400; }
+.resource-pill>span { border-color: var(--line); }
+.wide-figure>a, .table-wrapper { border-radius: 0; border: 2px solid var(--line); box-shadow: var(--panel-shadow); background: #fff; }
+.wide-figure>a:hover { border-color: #a1a1aa; }
+.results h3 { font-size: 24px; font-weight: 400; }
+.results-table tbody tr:hover { background: #f1f1f2; }
+.table-wrapper:focus-visible { outline-color: #52525b; }
+.outcome { border-radius: 0; }
+.outcome.success { background: #e9e9ec; color: #18181b; }
+.outcome.partial, .outcome.failure { background: #f1f1f2; color: #606066; }
+footer .brand { font-weight: 400; }
+@media(max-width:800px) {
+  .home-page main { grid-template-columns: 1fr; padding: 40px 24px 60px; gap: 32px; }
+  .home-page header { padding: 20px 24px; }
+  .home-page .visual { margin: 0 auto; width: 100%; max-width: 580px; }
+  .home-page h1 span { display: block; }
+}
+@media(max-width:650px) {
+  .paper-title { font-size: 24px; }
+  .project-name { font-size: 36px; }
+  .home-page h1 { font-size: 36px; }
+  .home-page h2 { font-size: 24px; }
+  .home-page header .brand { font-size: 12px; }
+  .home-page header .brand img { width: 32px; height: 36px; }
+  .home-page p { font-size: 16px; }
+  .site-header nav a { font-size: 12px; }
+  button.guide { width: auto; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .button, .resource-pill, button.guide { transition: none; }
+  .button:active, button.guide:active { transform: none; }
+}
