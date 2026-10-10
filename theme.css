@@ -13,8 +13,13 @@
   --line: #e1e1e5;
   --soft: #f0f0f1;
   --panel-shadow: 4px 4px 0 rgb(24 24 27 / 15%);
+  --reading-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 body { background: var(--paper); color: var(--ink); font-family: "Fusion Pixel", monospace; }
+.benchmark-page { font-family: var(--reading-font); }
+.benchmark-page h1, .benchmark-page h2, .benchmark-page h3,
+.benchmark-page nav, .benchmark-page .brand { font-family: "Fusion Pixel", monospace; }
+.benchmark-page figcaption { font-size: 13px; line-height: 1.7; }
 body::before { background: none; }
 a:focus-visible, button:focus-visible { outline-color: #52525b; }
 .brand { font-size: 12px; font-weight: 400; letter-spacing: 0; gap: 12px; }
@@ -57,7 +62,7 @@ button.guide { padding: 12px 16px; }
 .outcome.success { background: #e9e9ec; color: #18181b; }
 .outcome.partial, .outcome.failure { background: #f1f1f2; color: #606066; }
 /* Dense research data uses a readable typeface within the game's visual shell. */
-.results { max-width: 960px; margin: 40px auto 0; scroll-margin-top: 100px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.results { max-width: 960px; margin: 40px auto 0; scroll-margin-top: 100px; }
 .results h3 { font-family: "Fusion Pixel", monospace; text-align: left; margin-bottom: 12px; }
 .results-scope { text-align: left; font-size: 13px; margin-bottom: 14px; }
 .results-summary { text-align: left; font-size: 15px; line-height: 1.6; margin-bottom: 24px; }
@@ -84,6 +89,8 @@ footer .brand { font-weight: 400; }
   .home-page h1 span { display: block; }
 }
 @media(max-width:650px) {
+  .benchmark-page .abstract { font-size: 15px; }
+  .benchmark-page figcaption { font-size: 12px; }
   .paper-title { font-size: 24px; }
   .project-name { font-size: 36px; }
   .home-page h1 { font-size: 36px; }
