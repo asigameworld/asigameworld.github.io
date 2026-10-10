@@ -16,7 +16,8 @@ This is a static site with no build step or package dependencies.
 - `benchmark/index.html`: benchmark text, authors, figures, and results.
 - `agent-guide.md`: English agent guide source and downloadable Markdown.
 - `agent-guide/template.html`: guide page layout and one-click copying. Run `python3 scripts/build-agent-guide.py` after editing the guide or template to regenerate `agent-guide/index.html`.
-- `style.css`: visual design and responsive layout.
+- `home.css`: homepage layout and responsive design.
+- `style.css`: shared research and guide page styling.
 - `assets/`: figures and favicon. Figures are adapted from the current manuscript.
 
 Preview locally from this directory:
@@ -29,7 +30,7 @@ Open http://localhost:8000/ for the homepage and http://localhost:8000/benchmark
 
 ```sh
 git pull --ff-only origin main
-git add index.html benchmark/index.html style.css assets
+git add index.html home.css benchmark/index.html style.css assets agent-guide.md agent-guide scripts
 git commit -m "Update project website"
 git push origin main
 ```
