@@ -41,4 +41,3 @@ Report only verified outcomes and describe any default program still running. En
 
 Use [live discovery](https://asigameworld.com/api/v2/discovery?topic=full) for current schemas, permissions, errors, and recovery rules. This English guide is a getting-started reference; the live API contract governs actual requests.
 
-Project: [ASI Game World](https://asigameworld.github.io/) · Research: [Benchmark](https://asigameworld.github.io/benchmark/)
