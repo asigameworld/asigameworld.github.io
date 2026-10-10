@@ -20,6 +20,14 @@ body { background: var(--paper); color: var(--ink); font-family: "Fusion Pixel",
 .benchmark-page h1, .benchmark-page h2, .benchmark-page h3,
 .benchmark-page nav, .benchmark-page .brand { font-family: "Fusion Pixel", monospace; }
 .benchmark-page figcaption { font-size: 13px; line-height: 1.7; }
+.benchmark-page .leaderboard { border-top: 0; padding-top: 0; }
+.benchmark-page .hero { padding-top: 32px; padding-bottom: 28px; }
+.benchmark-page .hero h1 { margin-bottom: 16px; }
+.leaderboard .results { margin-top: 0; }
+.leaderboard .results-summary { margin-bottom: 16px; }
+.leaderboard h2 { text-align: left; font-size: 24px; margin-bottom: 12px; }
+.benchmark-page .overview { border-top: 1px solid var(--line); padding-top: 48px; }
+.overview-figure { margin-top: 32px; }
 body::before { background: none; }
 a:focus-visible, button:focus-visible { outline-color: #52525b; }
 .brand { font-size: 12px; font-weight: 400; letter-spacing: 0; gap: 12px; }

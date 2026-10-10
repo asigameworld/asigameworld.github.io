@@ -9,12 +9,12 @@
   <title>ASIWorld — A Persistent Survival Sandbox</title>
   <link rel="icon" href="/assets/favicon.svg?v=3" type="image/svg+xml">
   <link rel="stylesheet" href="/style.css?v=8">
-<link rel="stylesheet" href="/theme.css?v=3"></head>
+<link rel="stylesheet" href="/theme.css?v=4"></head>
 <body class="benchmark-page">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="/" aria-label="Back to ASI Game World homepage" title="Back to project home"><img class="new-brand-icon" src="/assets/world-emblem.svg" width="36" height="40" alt=""><span class="brand-name">ASI<span>GAME WORLD</span></span></a>
-    <nav aria-label="Main navigation"><a href="#overview">Overview</a><a href="#tasks">Tasks</a><a href="#evaluation">Evaluation</a></nav>
+    <nav aria-label="Main navigation"><a href="#results">Results</a><a href="#overview">Overview</a><a href="#tasks">Tasks</a><a href="#evaluation">Evaluation</a></nav>
   </header>
   <main id="main">
     <section class="hero" aria-labelledby="title">
@@ -28,19 +28,9 @@
         <span class="resource-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg><strong>Code</strong><span>Coming soon</span></span>
       </div>
     </section>
-    <section class="overview section" aria-labelledby="overview-title">
-      <figure class="wide-figure teaser"><a href="/assets/overview.webp" target="_blank" rel="noopener" aria-label="Open the ASIWorld overview figure at full size"><img src="/assets/overview.webp" width="1860" height="846" alt="ASIWorld overview: a persistent survival world, an agent harness with asynchronous program execution, and evaluation using execution records and world state." fetchpriority="high"></a><figcaption>ASIWorld connects persistent world state, asynchronous agent execution, and evaluation of outcomes, achievements, and costs.</figcaption></figure>
-      <div class="section-heading centered" id="overview"><h2 id="overview-title">Overview</h2></div>
-      <p class="abstract"><strong>ASIWorld</strong> evaluates autonomous agents in a persistent survival sandbox. Agents coordinate production and exploration through direct actions or asynchronous programs, while earlier decisions shape later opportunities. Evaluation considers task outcomes, development achievements, survival costs, and execution behavior.</p>
-    </section>
-    <section class="tasks section" id="tasks" aria-labelledby="tasks-title">
-      <div class="section-heading centered"><h2 id="tasks-title">Benchmark Tasks</h2><p>Two task families test coordinated execution through dependencies, preparation, and changing world state.</p></div>
-      <figure class="wide-figure"><a href="/assets/tasks.webp" target="_blank" rel="noopener" aria-label="Open the benchmark task figure at full size"><img src="/assets/tasks.webp" width="1774" height="887" alt="Production and exploration task paths, with resource and crafting dependencies, dungeon tiers, and additional attainment requirements." loading="lazy"></a><figcaption>Task paths and additional attainment criteria in the production and exploration evaluations.</figcaption></figure>
-    </section>
-    <section class="evaluation section" id="evaluation" aria-labelledby="evaluation-title">
-      <div class="section-heading centered"><h2 id="evaluation-title">Evaluation</h2><p>Assessing whether agents achieve their goals, how far they progress, and what attainment costs.</p></div>
+    <section class="leaderboard section" aria-labelledby="leaderboard-title">
       <div class="results" id="results">
-        <h3>Main evaluation results</h3>
+        <h2 id="leaderboard-title">Agent evaluation</h2>
         <p class="results-scope">One season · 300 simulation minutes · Common Claude Code harness</p>
         <p class="results-summary"><strong>8/9</strong> configurations complete production; <strong>6/9</strong> complete both production and exploration.</p>
         <div class="table-wrapper results-wrapper" role="region" aria-label="Main evaluation results, scroll horizontally on small screens" tabindex="0">
@@ -60,6 +50,20 @@
           </table>
         </div>
         <p class="results-note">Production: travel outfit completed. Exploration: Shadow King defeated. Achievements are assessed independently (out of 8); knockdowns indicate survival costs.</p>
+      </div>
+    </section>
+    <section class="overview section" aria-labelledby="overview-title">
+      <div class="section-heading centered" id="overview"><h2 id="overview-title">Overview</h2></div>
+      <p class="abstract"><strong>ASIWorld</strong> evaluates autonomous agents in a persistent survival sandbox. Agents coordinate production and exploration through direct actions or asynchronous programs, while earlier decisions shape later opportunities. Evaluation considers task outcomes, development achievements, survival costs, and execution behavior.</p>
+      <figure class="wide-figure overview-figure"><a href="/assets/overview.webp" target="_blank" rel="noopener" aria-label="Open the ASIWorld overview figure at full size"><img src="/assets/overview.webp" width="1860" height="846" alt="ASIWorld overview: a persistent survival world, an agent harness with asynchronous program execution, and evaluation using execution records and world state." loading="lazy"></a><figcaption>ASIWorld connects persistent world state, asynchronous agent execution, and evaluation of outcomes, achievements, and costs.</figcaption></figure>
+    </section>
+    <section class="tasks section" id="tasks" aria-labelledby="tasks-title">
+      <div class="section-heading centered"><h2 id="tasks-title">Benchmark Tasks</h2><p>Two task families test coordinated execution through dependencies, preparation, and changing world state.</p></div>
+      <figure class="wide-figure"><a href="/assets/tasks.webp" target="_blank" rel="noopener" aria-label="Open the benchmark task figure at full size"><img src="/assets/tasks.webp" width="1774" height="887" alt="Production and exploration task paths, with resource and crafting dependencies, dungeon tiers, and additional attainment requirements." loading="lazy"></a><figcaption>Task paths and additional attainment criteria in the production and exploration evaluations.</figcaption></figure>
+    </section>
+    <section class="evaluation section" id="evaluation" aria-labelledby="evaluation-title">
+      <div class="section-heading centered"><h2 id="evaluation-title">Evaluation</h2><p>Assessing whether agents achieve their goals, how far they progress, and what attainment costs.</p></div>
+      <div class="results evaluation-details">
         <figure class="wide-figure result-figure">
           <h3>Dungeon performance</h3>
           <a href="/assets/tier-performance.pdf" target="_blank" rel="noopener" aria-label="Open the original dungeon performance figure as a PDF"><img src="/assets/tier-performance.png" width="2200" height="1320" alt="Two heatmaps from the manuscript showing clear rate and damage taken per clear for nine configurations across Outer Court, Inner Temple, Royal Tomb, and Shadow King." loading="lazy"></a>
