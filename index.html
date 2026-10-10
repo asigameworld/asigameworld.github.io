@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#185b46">
   <title>ASIWorld — A Persistent Survival Sandbox</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -37,7 +37,6 @@
     </section>
     <section class="evaluation section" id="evaluation" aria-labelledby="evaluation-title">
       <div class="section-heading centered"><h2 id="evaluation-title">Evaluation</h2><p>Assessing whether agents achieve their goals, how far they progress, and what attainment costs.</p></div>
-      <figure class="wide-figure"><a href="assets/evaluation.webp" target="_blank" rel="noopener" aria-label="Open the evaluation illustration at full size"><img src="assets/evaluation.webp" width="1942" height="809" alt="Conceptual illustration of four evaluation dimensions: a trophy and dungeon portal for task outcomes; a checklist and workstation for development achievements; a heart and resource pouch for survival costs; and an adventurer following an action path for execution behavior." loading="lazy"></a></figure>
       <div class="results" id="results">
         <h3>Main evaluation results</h3>
         <p class="results-scope">One season · 300 simulation minutes · Common Claude Code harness</p>
@@ -59,6 +58,16 @@
           </table>
         </div>
         <p class="results-note">Production: travel outfit completed. Exploration: Shadow King defeated. Achievements are assessed independently (out of 8); knockdowns indicate survival costs.</p>
+        <figure class="wide-figure result-figure">
+          <h3>Dungeon performance</h3>
+          <a href="assets/tier-performance.pdf" target="_blank" rel="noopener" aria-label="Open the original dungeon performance figure as a PDF"><img src="assets/tier-performance.png" width="2200" height="1320" alt="Two heatmaps from the manuscript showing clear rate and damage taken per clear for nine configurations across Outer Court, Inner Temple, Royal Tomb, and Shadow King." loading="lazy"></a>
+          <figcaption>Across three seasons: boss defeat rate per attempt (left) and mean damage taken in successful clears (right).</figcaption>
+        </figure>
+        <figure class="wide-figure result-figure">
+          <h3>Action composition</h3>
+          <a href="assets/action-composition.pdf" target="_blank" rel="noopener" aria-label="Open the original action composition figure as a PDF"><img src="assets/action-composition.png" width="2200" height="1016" alt="Stacked bars from the manuscript showing the share of executed actions devoted to production, construction, dungeon combat, maintenance, and movement in the main season." loading="lazy"></a>
+          <figcaption>Share of executed game actions by category in the main evaluation season.</figcaption>
+        </figure>
       </div>
     </section>
   </main>
