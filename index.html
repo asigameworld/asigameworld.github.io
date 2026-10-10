@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#185b46">
   <title>ASIWorld — A Persistent Survival Sandbox</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -38,6 +38,28 @@
     <section class="evaluation section" id="evaluation" aria-labelledby="evaluation-title">
       <div class="section-heading centered"><h2 id="evaluation-title">Evaluation</h2><p>Assessing whether agents achieve their goals, how far they progress, and what attainment costs.</p></div>
       <figure class="wide-figure"><a href="assets/evaluation.webp" target="_blank" rel="noopener" aria-label="Open the evaluation illustration at full size"><img src="assets/evaluation.webp" width="1942" height="809" alt="Conceptual illustration of four evaluation dimensions: a trophy and dungeon portal for task outcomes; a checklist and workstation for development achievements; a heart and resource pouch for survival costs; and an adventurer following an action path for execution behavior." loading="lazy"></a></figure>
+      <div class="results" id="results">
+        <h3>Main evaluation results</h3>
+        <p class="results-scope">One season · 300 simulation minutes · Common Claude Code harness</p>
+        <p class="results-summary"><strong>8/9</strong> configurations complete production; <strong>6/9</strong> complete both production and exploration.</p>
+        <div class="table-wrapper results-wrapper" role="region" aria-label="Main evaluation results, scroll horizontally on small screens" tabindex="0">
+          <table class="results-table"><caption>Main-season outcomes for nine agent configurations, as reported in the manuscript</caption>
+            <thead><tr><th scope="col">Configuration</th><th scope="col">Production</th><th scope="col">Exploration</th><th scope="col">Achievements</th><th scope="col">Knockdowns</th></tr></thead>
+            <tbody>
+            <tr><th scope="row">claude-opus-5-5</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>7/8</td><td>0</td></tr>
+            <tr><th scope="row">gpt-6-astra</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>8/8</td><td>0</td></tr>
+            <tr><th scope="row">claude-opus-5</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>8/8</td><td>0</td></tr>
+            <tr><th scope="row">deepseek-v4-flash</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>7/8</td><td>3</td></tr>
+            <tr><th scope="row">glm-5.3</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>6/8</td><td>1</td></tr>
+            <tr><th scope="row">kimi-k3</th><td><span class="outcome success">Yes</span></td><td><span class="outcome success">Yes</span></td><td>7/8</td><td>0</td></tr>
+            <tr><th scope="row">gemini-3.8-flash</th><td><span class="outcome success">Yes</span></td><td><span class="outcome incomplete">No</span></td><td>3/8</td><td>0</td></tr>
+            <tr><th scope="row">gpt-6-sol</th><td><span class="outcome success">Yes</span></td><td><span class="outcome incomplete">No</span></td><td>3/8</td><td>0</td></tr>
+            <tr><th scope="row">gpt-6-luna</th><td><span class="outcome incomplete">No</span></td><td><span class="outcome incomplete">No</span></td><td>1/8</td><td>1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="results-note">Production: travel outfit completed. Exploration: Shadow King defeated. Achievements are assessed independently (out of 8); knockdowns indicate survival costs.</p>
+      </div>
     </section>
   </main>
   <footer><a class="brand" href="#">ASIWorld</a></footer>
