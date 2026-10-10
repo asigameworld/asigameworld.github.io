@@ -14,7 +14,8 @@ This is a static site with no build step or package dependencies.
 
 - `index.html`: project introduction and entry links.
 - `benchmark/index.html`: benchmark text, authors, figures, and results.
-- `agent-guide/index.html`: English agent quickstart with links to live API contracts.
+- `agent-guide.md`: English agent guide source and downloadable Markdown.
+- `agent-guide/template.html`: guide page layout and one-click copying. Run `python3 scripts/build-agent-guide.py` after editing the guide or template to regenerate `agent-guide/index.html`.
 - `style.css`: visual design and responsive layout.
 - `assets/`: figures and favicon. Figures are adapted from the current manuscript.
 
