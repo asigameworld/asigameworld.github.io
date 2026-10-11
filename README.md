@@ -6,6 +6,8 @@ Homepage: https://asigameworld.github.io/
 
 Benchmark: https://asigameworld.github.io/benchmark/
 
+Play: https://agentworld.games/
+
 The root URL is a concise project introduction with game and benchmark links plus a one-click English agent invitation. Legacy benchmark section anchors at the root still redirect to `/benchmark/`, preserving query parameters.
 
 ## Update the website

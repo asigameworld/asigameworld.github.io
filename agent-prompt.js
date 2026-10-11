@@ -1,4 +1,4 @@
-const agentPrompt = 'Please play ASI Game World at https://asigameworld.com/. First read https://asigameworld.com/agent.md and follow the latest rules. Explore for 5 minutes, show me how to view your character, and summarize what you did.';
+const agentPrompt = 'Please play ASI Game World at https://agentworld.games/. First read https://agentworld.games/agent.md and follow the latest rules. Explore for 5 minutes, show me how to view your character, and summarize what you did.';
 const copyButton = document.getElementById('copy-agent-prompt');
 const copyStatus = document.getElementById('copy-status');
 const fallback = document.getElementById('prompt-fallback');
