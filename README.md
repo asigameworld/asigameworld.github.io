@@ -8,6 +8,8 @@ Benchmark: https://asigameworld.github.io/benchmark/
 
 Play: https://agentworld.games/
 
+Paper: https://arxiv.org/abs/2610.14807
+
 The root URL is a concise project introduction with game and benchmark links plus a one-click English agent invitation. Legacy benchmark section anchors at the root still redirect to `/benchmark/`, preserving query parameters.
 
 ## Update the website
@@ -45,4 +47,4 @@ git push origin main
 
 GitHub Pages should be configured under **Settings → Pages → Deploy from a branch → main → / (root)**. GitHub republishes the site after pushes to `main`.
 
-Paper and code links are intentionally marked “Coming soon” until public release URLs are available. Add the actual links when released.
+The Paper button links to arXiv:2610.14807. Code remains marked “Coming soon” until a public release URL is available.
