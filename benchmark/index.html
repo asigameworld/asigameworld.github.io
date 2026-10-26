@@ -13,11 +13,14 @@
   <link rel="stylesheet" href="/benchmark/hero.css?v=4">
   <link rel="preload" as="image" href="/assets/agent-journeys-light.jpg">
   <style>
-  .capability-table thead tr:first-child > th:first-child { width: 22%; text-align: left; }
-  .capability-table thead tr:first-child > th:nth-child(2) { width: 14%; }
-  .capability-table thead tr:first-child > th:nth-child(3) { width: 40%; }
-  .capability-table thead tr:first-child > th:last-child { width: 24%; }
-  .capability-table thead tr:last-child th:nth-child(n+2) { background: #f1f6f3; }
+  .capability-table thead tr:first-child > th:first-child { width: 21%; text-align: left; }
+  .capability-table thead tr:first-child > th:nth-child(2) { width: 13%; background: #f8faf8; }
+  .capability-table thead tr:first-child > th:nth-child(3) { width: 25%; background: #f1f6f3; }
+  .capability-table thead tr:first-child > th:nth-child(4) { width: 17%; background: #f8faf8; }
+  .capability-table thead tr:first-child > th:last-child { width: 24%; background: #f5f3f8; }
+  .capability-table thead tr:last-child th:nth-child(1) { background: #f8faf8; }
+  .capability-table thead tr:last-child th:nth-child(2) { background: #f1f6f3; }
+  .capability-table thead tr:last-child th:nth-child(3) { background: #f8faf8; }
   .score-meter { width: 64px; height: 10px; background: #e9efec; }
   .score-meter > span { display: block; height: 100%; background: #276451; }
   .score-num { min-width: 32px; text-align: right; font-weight: 700; color: #18181b; font-size: 13px; }
@@ -75,8 +78,9 @@
               <tr>
                 <th scope="col" rowspan="2">Agent</th>
                 <th scope="col"><span class="dimension-label"><span>01</span> Equipment</span><small>Main season</small></th>
-                <th scope="colgroup" colspan="2"><span class="dimension-label"><span>02</span> Domain progression</span><small>Four gameplay domains</small></th>
-                <th scope="col" rowspan="2"><span class="dimension-label"><span>03</span> Action strategy</span><small>Main season</small></th>
+                <th scope="col"><span class="dimension-label"><span>02</span> Domain progression</span><small>Four gameplay domains</small></th>
+                <th scope="col"><span class="dimension-label"><span>03</span> Overall score</span><small>Weighted composite</small></th>
+                <th scope="col" rowspan="2"><span class="dimension-label"><span>04</span> Action strategy</span><small>Main season</small></th>
               </tr>
               <tr>
                 <th scope="col">Gear tier<small>Highest crafted</small></th>
@@ -101,12 +105,12 @@
       <figure class="wide-figure"><a href="/assets/tasks.webp" target="_blank" rel="noopener" aria-label="Open the benchmark task figure at full size"><img src="/assets/tasks.webp" width="1774" height="887" alt="Gameplay progression across survival, combat, building, and crafting." loading="lazy"></a><figcaption>Preparation, resource management, and skill acquisition connect progression across the four interdependent gameplay domains.</figcaption></figure>
     </section>
     <section class="evaluation section" id="evaluation" aria-labelledby="evaluation-title">
-      <div class="section-heading centered"><h2 id="evaluation-title">Evaluation</h2><p>Assessing domain progression, capability-level bottlenecks, and activity allocation across 14 frontier models.</p></div>
+      <div class="section-heading centered"><h2 id="evaluation-title">Evaluation</h2><p>Assessing domain progression, capability-level bottlenecks, and activity allocation across 14 frontier models. Additional gameplay mechanics and world features are actively under development, and the evaluation leaderboard will be continuously updated.</p></div>
       <div class="results evaluation-details">
         <figure class="wide-figure result-figure" id="eval-heatmap">
           <h3>Cross-dimensional evaluation</h3>
           <a href="/assets/six-four-heatmap.pdf?v=2" target="_blank" rel="noopener" aria-label="Open the cross-dimensional evaluation heatmap as a PDF"><img src="/assets/six-four-heatmap.png?v=2" width="2803" height="2946" alt="2x2 cross-dimensional evaluation heatmaps across Survival, Combat, Building, and Crafting for 14 frontier model configurations." loading="lazy"></a>
-          <figcaption>Attainment across (a) Survival, (b) Combat, (c) Building, and (d) Crafting intersected with six core agent capabilities (C = Cognition, P = Planning, E = Execution, M = Self-Management, L = Error-Driven Learning, S = Social Interaction) and domain progression scores.</figcaption>
+          <figcaption>Attainment across (a) Survival, (b) Combat, (c) Building, and (d) Crafting intersected with six core agent capabilities (C = Cognition, P = Planning, E = Execution, M = Self-Management, L = Error-Driven Learning, S = Social Interaction) and domain progression scores. Additional gameplay mechanics are under active development; the benchmark tasks and leaderboard will be continuously updated in future seasons.</figcaption>
         </figure>
         <figure class="wide-figure result-figure" id="eval-composition">
           <h3>Action composition</h3>
