@@ -47,7 +47,7 @@ git push origin main
 
 GitHub Pages should be configured under **Settings → Pages → Deploy from a branch → main → / (root)**. GitHub republishes the site after pushes to `main`.
 
-The Paper button links to arXiv:2610.14807. Code remains marked “Coming soon” until a public release URL is available.
+The Paper button links to the hosted manuscript PDF; the arXiv button links to arXiv:2610.14807. Code remains marked “Coming soon” until a public release URL is available.
 
 Latest manuscript PDF (2026-10-29): https://asigameworld.github.io/assets/ASIWorld-paper-2026-10-29.pdf
 
