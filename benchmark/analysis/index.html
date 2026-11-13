@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en" data-i18n-title="doc-title-analysis">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Extended capability diagnostics, error recovery dynamics, and trajectory case studies in ASIWorld." data-i18n-content="meta-analysis">
+  <meta name="theme-color" content="#18181b">
+  <link rel="canonical" href="https://asigameworld.github.io/benchmark/analysis/">
+  <title>ASIWorld — Behavioral Analysis</title>
+  <link rel="icon" href="/assets/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css?v=8">
+  <link rel="stylesheet" href="/theme.css?v=41">
+  <link rel="stylesheet" href="/benchmark/hero.css?v=4">
+</head>
+<body class="benchmark-page">
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Back to ASI Game World homepage" title="Back to project home" data-i18n-aria-label="brand-back" data-i18n-title="brand-title"><img class="new-brand-icon" src="/assets/world-emblem.svg" width="36" height="40" alt=""><span class="brand-name">ASI<span>GAME WORLD</span></span></a>
+    <nav aria-label="Main navigation">
+      <div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang-set="en" aria-pressed="true">EN</button><button type="button" data-lang-set="zh">中文</button></div>
+      <a class="nav-top" href="https://arxiv.org/abs/2610.14807" target="_blank" rel="noopener" data-i18n="nav-paper">Paper</a>
+      <a class="nav-top" href="/benchmark/#results" data-i18n="nav-results">Results</a>
+      <a class="nav-top" href="/benchmark/#overview" data-i18n="nav-overview">Overview</a>
+      <a class="nav-top" href="/benchmark/#tasks" data-i18n="nav-tasks">Tasks</a>
+      <div class="nav-dropdown">
+        <a class="nav-top nav-dropdown-trigger" href="/benchmark/#evaluation" aria-current="page" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav-eval">Evaluation</span><span class="nav-caret" aria-hidden="true">▾</span></a>
+        <div class="nav-dropdown-menu" role="menu">
+          <a class="nav-dropdown-item" href="/benchmark/#evaluation" role="menuitem"><strong data-i18n="nav-eval-graphs">Evaluation Graphs</strong><span data-i18n="nav-eval-graphs-desc">Cross-dimensional 6×4 heatmaps &amp; action composition charts</span></a>
+          <a class="nav-dropdown-item" href="/benchmark/analysis/" aria-current="page" role="menuitem"><strong data-i18n="nav-eval-analysis">Behavioral Analysis</strong><span data-i18n="nav-eval-analysis-desc">Per-model radar profiles, error recovery &amp; NPC-lie verbatim traces</span></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main id="main" class="analysis-shell">
+    <header class="analysis-header">
+      <span class="analysis-eyebrow" data-i18n="ana-eyebrow">BEHAVIORAL ANALYSIS</span>
+      <h1 data-i18n="ana-title">Behavioral Analysis</h1>
+      <p data-i18n="ana-lead">Behavioral diagnostics across multi-hour open-world runs: capability radar profiles, error-driven recovery, and trajectory-level hypothesis falsification.</p>
+    </header>
+
+    <div class="analysis-tabs" role="tablist" aria-label="Analysis topics">
+      <button type="button" class="analysis-tab" role="tab" data-pane="profiles" aria-selected="true" data-i18n="tab-profiles">Capability Profiles</button>
+      <button type="button" class="analysis-tab" role="tab" data-pane="recovery" aria-selected="false" data-i18n="tab-recovery">Error Recovery</button>
+      <button type="button" class="analysis-tab" role="tab" data-pane="case-study" aria-selected="false" data-i18n="tab-case">Case Study: NPC Bug</button>
+    </div>
+
+    <!-- PROFILES:START -->
+    <section class="analysis-pane" id="pane-profiles" data-pane="profiles" data-active>
+      <div class="pane-intro">
+        <h2 data-i18n="diag-radar-head">Model capability cards</h2>
+        <p data-i18n="diag-radar-lead">Choose a track, then a model. The card draws that model's own 4-domain radar and 6-capability radar. The dashed polygon is the mean of the 15 frontier models.</p>
+      </div>
+      <div class="profile-toolbar">
+        <div class="track-switcher" id="card-track-switch" role="tablist" aria-label="Model track">
+          <button type="button" class="track-btn" data-track="frontier" aria-selected="true"><span data-i18n="track-frontier">Frontier models</span><span class="track-count">15</span></button>
+          <button type="button" class="track-btn" data-track="small" aria-selected="false"><span data-i18n="track-small">Compact Open-Weight</span><span class="track-count">1</span></button>
+        </div>
+      </div>
+      <p class="small-track-note" id="card-small-note" hidden data-i18n="small-track-note">Separate compact open-weight track: 27B open-weight model evaluated under the same 7-hour rules (3-run mean), listed separately from frontier flagship models.</p>
+      <div class="rej-slider-bar">
+        <button type="button" class="rej-nav-btn" id="prof-prev" aria-label="Previous model">‹</button>
+        <div class="agent-roster rej-roster-strip" id="agent-roster" role="listbox" aria-label="Models"></div>
+        <button type="button" class="rej-nav-btn" id="prof-next" aria-label="Next model">›</button>
+      </div>
+      <article class="model-hero-card" id="model-hero-card" aria-live="polite"></article>
+      <details class="io-drawer">
+        <summary>
+          <span data-i18n="cohort-drawer-summary">Cross-season radar comparison</span>
+          <span>▾</span>
+        </summary>
+        <div class="io-drawer-body">
+          <div class="analysis-card-grid">
+            <figure class="analysis-card radar-card">
+              <h3 data-i18n="fig-3s-dom">Cross-season progression · Four domains</h3>
+              <a href="/assets/three-season-radar-4domains.pdf?v=1" target="_blank" rel="noopener"><img src="/assets/three-season-radar-4domains.png?v=1" alt="Cross-season 4-domain radar across benchmark iterations."></a>
+              <figcaption data-i18n="fig-3s-dom-cap">Evolution of domain-level progression across successive world and duration configurations.</figcaption>
+            </figure>
+            <figure class="analysis-card radar-card">
+              <h3 data-i18n="fig-3s-cap">Cross-season progression · Six capabilities</h3>
+              <a href="/assets/three-season-radar-6capabilities.pdf?v=1" target="_blank" rel="noopener"><img src="/assets/three-season-radar-6capabilities.png?v=1" alt="Cross-season 6-capability radar across benchmark iterations."></a>
+              <figcaption data-i18n="fig-3s-cap-cap">Capability profile shifts as survival horizon extends to 7 hours.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </details>
+    </section>
+<!-- PROFILES:END -->
+
+    <section class="analysis-pane" id="pane-recovery" data-pane="recovery">
+      <div class="pane-intro">
+        <h2 data-i18n="diag-rej-head">Action library rejection &amp; error recovery</h2>
+        <p data-i18n="diag-rej-lead">When agents call the in-game action library, calls that violate game rules—such as missing materials, out of range, blocked siting, or action cooldowns—are rejected by the engine. Note that a rising rejection rate in later hours often reflects task escalation rather than model degradation: agents transition from simple early tasks (foraging, starter quests, basic tools) to harder mid/late-game tasks (house siting &amp; construction, multi-floor dungeon boss combat, and high-tier crafting). Stronger models briefly spike when entering a harder domain and then rapidly adapt to drive rejections back down.</p>
+      </div>
+      <div class="action-lib-card" aria-label="In-game action library categories">
+        <div class="action-lib-row">
+          <div class="action-lib-cat"><i class="mix-0"></i><strong data-i18n="leg-prod">Production</strong><span data-i18n="actlib-prod-sub">Gather, farm, craft &amp; NPC quests</span></div>
+          <div class="action-lib-tags"><code>gather</code><code>fell</code><code>sow</code><code>harvest</code><code>craft</code><code>craft_collect</code><code>cook</code><code>tailor</code><code>repair</code><code>store</code><code>take</code><code>talk</code><code>quest</code><code>offer</code></div>
+        </div>
+        <div class="action-lib-row">
+          <div class="action-lib-cat"><i class="mix-1"></i><strong data-i18n="leg-cons">Construction</strong><span data-i18n="actlib-cons-sub">Blueprint siting &amp; house building</span></div>
+          <div class="action-lib-tags"><code>plan_project</code><code>place_project</code><code>haul_project</code><code>build_project</code><code>designate</code><code>assemble</code><code>fit_lock</code><code>dismantle</code></div>
+        </div>
+        <div class="action-lib-row">
+          <div class="action-lib-cat"><i class="mix-2"></i><strong data-i18n="leg-dung">Dungeon combat</strong><span data-i18n="actlib-comb-sub">Dungeon entry, tactical turns &amp; loot</span></div>
+          <div class="action-lib-tags"><code>enter_dungeon</code><code>reenter_dungeon</code><code>leave_dungeon</code><code>battle_act</code><code>attack</code><code>loot</code><code>drink</code></div>
+        </div>
+        <div class="action-lib-row">
+          <div class="action-lib-cat"><i class="mix-3"></i><strong data-i18n="leg-maint">Sustenance</strong><span data-i18n="actlib-sust-sub">Eating, resting &amp; gear loadout</span></div>
+          <div class="action-lib-tags"><code>eat</code><code>rest</code><code>camp</code><code>equip</code><code>unequip</code><code>item_use</code></div>
+        </div>
+        <div class="action-lib-row">
+          <div class="action-lib-cat"><i class="mix-4"></i><strong data-i18n="leg-move">Movement</strong><span data-i18n="actlib-move-sub">Grid steps, pathfinding &amp; doors</span></div>
+          <div class="action-lib-tags"><code>step</code><code>move</code><code>move_to</code><code>stop</code><code>door</code></div>
+        </div>
+      </div>
+      <div class="rej-slider-shell">
+        <div class="rej-slider-bar">
+          <button type="button" class="rej-nav-btn" id="rej-prev" aria-label="Previous model">‹</button>
+          <div class="agent-roster rej-roster-strip" id="rej-roster" role="listbox" aria-label="Models"></div>
+          <button type="button" class="rej-nav-btn" id="rej-next" aria-label="Next model">›</button>
+        </div>
+        <article class="model-hero-card rej-hero-card" id="rej-hero-card" aria-live="polite"></article>
+      </div>
+      <details class="io-drawer">
+        <summary>
+          <span data-i18n="rej-drawer-summary">View all-15-model comparison charts</span>
+          <span>▾</span>
+        </summary>
+        <div class="io-drawer-body">
+          <figure class="analysis-card full">
+            <h3 data-i18n="fig-rej-sum">Hourly action rejection rate by category (7-hour bar plots)</h3>
+            <a href="/assets/action-rejection-summary.pdf?v=6" data-href-en="/assets/action-rejection-summary.pdf?v=6" data-href-zh="/assets/action-rejection-summary-zh.pdf?v=6" target="_blank" rel="noopener"><img src="/assets/action-rejection-summary.png?v=6" data-src-en="/assets/action-rejection-summary.png?v=6" data-src-zh="/assets/action-rejection-summary-zh.png?v=6" width="4320" height="2760" alt="Hourly action rejection rate bar plots by category across 7 hours for 15 frontier models."></a>
+            <figcaption data-i18n="fig-rej-sum-cap">Each subplot shows one model's 7 evaluation hours (1h–7h) on a fine-grained vertical scale: the stacked color bars break down that hour's rejection rate across Production, Construction, Dungeon combat, Sustenance, and Movement, with the exact hourly total (0.1% precision; ±SD error bars for multi-run deepseek-v4.1-flash) above each bar and the dominant category share inside the bar.</figcaption>
+          </figure>
+          <figure class="analysis-card full" style="margin-bottom:0">
+            <h3 data-i18n="fig-rej-hour">Hourly action rejection trajectories</h3>
+            <a href="/assets/hourly-rejection-three-seasons.pdf?v=6" target="_blank" rel="noopener"><img src="/assets/hourly-rejection-three-seasons.png?v=6" width="3851" height="2135" alt="Hourly command rejection rate trajectories over evaluation hours."></a>
+            <figcaption data-i18n="fig-rej-hour-cap">Hourly failure rate (blue line) and call volume (gray bars) when invoking the in-game action library. Calls are rejected when game rules are not met (e.g., missing materials, out of range, or action busy); a falling curve shows the model learning the rules and avoiding invalid actions.</figcaption>
+          </figure>
+        </div>
+      </details>
+    </section>
+
+    <section class="analysis-pane" id="pane-case-study" data-pane="case-study">
+      <div class="case-banner">
+        <span class="case-badge" data-i18n="ins-badge">EXTRA INSIGHT · CASE STUDY (NOT INCLUDED IN LEADERBOARD SCORING)</span>
+        <div class="pane-intro" style="margin-bottom:14px">
+          <h2 data-i18n="ins-title">When World Text Lies: Falsifying the Mirrored NPC Dialogue Bug</h2>
+          <p data-i18n="ins-lead" data-i18n-html>Procedural map generation mirrored the horizontal axis (<code>+X</code> = East), placing the Main City Gate at <code>(126, 121)</code> and the World Tree at <code>(147, 91)</code>—east of the meadow spawn <code>(101, 121)</code>. However, starter NPC <strong>Qinghe</strong> retained hardcoded dialogue from an earlier un-mirrored map, instructing every agent to walk <em>“~20 steps west”</em> to enter the city, directly contradicting the objective <code>/v1/observe</code> beacon sensor. The four cards below group all 15 frontier models by how they handled that lie, followed by each model&#x27;s verbatim Input / Output trajectory steps (deepseek-v4.1-flash shows its 5-run mean in the summary card and a single representative run in the log).</p>
+        </div>
+
+        <div class="case-stats">
+          <div class="case-stat">
+            <strong data-i18n="stat-direct-val">0 min</strong>
+            <span data-i18n="stat-direct">claude-fable-5-2 and claude-opus-5 checked the beacon and walked east, reaching the tree in 16.9 and 31.3 min</span>
+          </div>
+          <div class="case-stat">
+            <strong data-i18n="stat-rapid-val">6–8 min</strong>
+            <span data-i18n="stat-rapid">claude-opus-5-5 and gemini-4-argon falsified the coordinates almost as soon as the west side blocked them</span>
+          </div>
+          <div class="case-stat mid">
+            <strong data-i18n="stat-terrain-val">25–104 min</strong>
+            <span data-i18n="stat-terrain">Eight models turned only after hitting the west wall. deepseek-v4.1-flash is a 5-run mean arrival, 104±52 min</span>
+          </div>
+          <div class="case-stat warn">
+            <strong data-i18n="stat-authority-val">143 min–7h</strong>
+            <span data-i18n="stat-authority">kimi-k3.1-pro let the line override the beacon. kimi-k3 and mimo-v2.6-pro never entered</span>
+          </div>
+        </div>
+
+        <details class="io-drawer" open>
+          <summary>
+            <span data-i18n="drawer-summary">Verbatim model Input / Output trajectory logs (all 15 frontier models)</span>
+            <span>▾</span>
+          </summary>
+          <div class="io-drawer-body">
+            <div class="io-shared-box">
+              <p class="io-shared-title" data-i18n="ins-shared-h">Identical conflicting environment inputs received by all agents</p>
+              <div class="io-step in">
+                <span class="io-role" data-i18n="ins-in-npc">[Input · tool_result · /v1/npcs · Meadow Caretaker Qinghe]</span>
+                <div class="io-raw">从草地往西二十来步是主城东门，进门往北走三十来步是世界树，从世界树往西二十来步就是归刃修造铺，门口站着木匠柏年和纹样匠绣棠……</div>
+              </div>
+              <div class="io-step in" style="margin-top:8px">
+                <span class="io-role" data-i18n="ins-in-beacon">[Input · tool_result · /v1/observe · Objective World Tree Beacon (+X = East of spawn 101,121)]</span>
+                <div class="io-raw">beacon {&quot;events&quot;: [], &quot;inZone&quot;: false, &quot;integrity&quot;: {&quot;current&quot;: 480, &quot;max&quot;: 480}, &quot;nodeId&quot;: &quot;whole-structure/world-tree&quot;, &quot;position&quot;: {&quot;x&quot;: 147.0, &quot;z&quot;: 91.0}, &quot;radius&quot;: 7.0, &quot;status&quot;: &quot;active&quot;}</div>
+              </div>
+            </div>
+
+            <div class="io-filters" role="group" aria-label="Filter trajectory logs by recognition tier">
+              <button type="button" class="io-filter-btn" data-tier="all" aria-pressed="true" data-i18n="io-flt-all">All (15)</button>
+              <button type="button" class="io-filter-btn" data-tier="direct" aria-pressed="false" data-i18n="io-flt-direct">Direct Beacon (2)</button>
+              <button type="button" class="io-filter-btn" data-tier="rapid" aria-pressed="false" data-i18n="io-flt-rapid">Rapid Falsify (2)</button>
+              <button type="button" class="io-filter-btn" data-tier="terrain" aria-pressed="false" data-i18n="io-flt-terrain">Wall-Triggered Pivot (8)</button>
+              <button type="button" class="io-filter-btn" data-tier="trapped" aria-pressed="false" data-i18n="io-flt-trapped">Trapped / Unsolved (3)</button>
+            </div>
+
+            <div class="io-columns">
+              <div class="io-col" data-tier="direct">
+                <div class="io-col-head">
+                  <strong>claude-fable-5-2</strong>
+                  <span class="io-pill direct" data-i18n="ins-fable-pill">Direct beacon · 16.9 min</span>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-fable-s1">[Conflict Detected · reasoning #265 · Beacon lies east and does not fit “walk west”]</span>
+                  <div class="io-raw">going west about 20 to the east gate. The world tree beacon at (147, 91) lies east, which doesn&#x27;t quite fit, so I need to check that.</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-fable-s2">[Confirmed Location · tool_result #284 · Reaches World Tree at (147,91)]</span>
+                  <div class="io-raw">[147.0, 95.0] {&#x27;energy&#x27;: 93.3, &#x27;food&#x27;: 44.2, &#x27;health&#x27;: 100.0} ... [&quot;node&quot;, &quot;whole-structure/world-tree&quot;, &quot;世界树完整根干冠装配&quot;, &quot;building&quot;, 147.0, 91.0, []]</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="direct">
+                <div class="io-col-head">
+                  <strong>claude-opus-5</strong>
+                  <span class="io-pill direct" data-i18n="ins-opus5-pill">Direct beacon · 31.3 min</span>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-opus5-s1">[Conflict Detected · assistant #219 · Locks onto (147,91) beacon and builds path helper]</span>
+                  <div class="io-raw">Major find: the observation includes a **beacon for the World Tree at (147,91)**, integrity 480/480. Let me build a pathing helper and head there.</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-opus5-s2">[Confirmed Gate · tool_result #228 · Observes East Gate at (126,121)]</span>
+                  <div class="io-raw">pos: [127.0,125.0]
+building|主城折肩拱冠门楼|(126.0,121.0)|uses=|town-curtain/gate/31102/16</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-opus5-s3">[Confirmed Location · tool_result #1821 · Standing by World Tree at (147,91)]</span>
+                  <div class="io-raw">{&quot;pos&quot;: [148.0, 83.0], &quot;scene&quot;: &quot;overworld&quot;, &quot;f&quot;: 59.4, &quot;h&quot;: 100.0}
+whole-structure/world-tree [building]  @147.0,91.0 世界树完整根干冠装配</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="rapid">
+                <div class="io-col-head">
+                  <strong>claude-opus-5-5</strong>
+                  <span class="io-pill fast" data-i18n="ins-opus-pill">Rapid falsify · 6.7 min</span>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-opus-s1">[Conflict Detected · reasoning #155 · Detects sensor vs. text conflict]</span>
+                  <div class="io-raw">I&#x27;m converting pose coordinates to cell coordinates to figure out where the beacon sits relative to spawn—landing on cell (147,91), which is northeast of spawn at (102,121). This conflicts with Qinghe&#x27;s directions about the east gate and going north, since she mentioned heading west, so I&#x27;m trying to reconcile how the city entrance actually aligns with these coordinates.</div>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-opus-s2">[Pivoted East · reasoning #171 · Trusts sensor coordinates &amp; builds A* planner]</span>
+                  <div class="io-raw">Got it — the world tree at (147,91) is actually east of spawn, not west. I&#x27;ll build a proper planner that remembers seen terrain and runs A* over it, treating unexplored cells optimistically.</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-opus-s4">[Confirmed Location · tool_result #195 · Arrives at (148,89) next to World Tree (147,91)]</span>
+                  <div class="io-raw">pos 148.0 89.0 (north=up -z)
+    1    
+  11111  
+ 1111111 
+ 1111111 
+1111@1111
+ 1#9#991 
+ 1#B91#1 
+  ##911  
+    1    
+node whole-structure/world-tree building 世界树完整根干冠装配 {&#x27;x&#x27;: 147.0, &#x27;y&#x27;: 1.0, &#x27;z&#x27;: 91.0}</div>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-opus-s3">[Notes Patched · tool_use #199 · Patches persistent NOTES.md]</span>
+                  <div class="io-raw">- NPC directions: &quot;north&quot; = -z, but &quot;west&quot; = +x (mirrored)! Verified: meadow(102,121) -&gt; tree(147,91).</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="rapid">
+                <div class="io-col-head">
+                  <strong>gemini-4-argon</strong>
+                  <span class="io-pill fast" data-i18n="ins-argon-pill">Rapid falsify · 7.7 min</span>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-argon-s1">[Followed NPC · assistant #280 · Initially plans to walk west along z=115]</span>
+                  <div class="io-raw">我将先在 `(98, 125)` 采集 `(98, 122)` 和 `(98, 121)` 的浆果储备干粮、食用 4 份把饱食度补满，随后按青禾指引向北走到 `z=115` 的车辙路，再沿路向西走约 20 步进入主城东门。</div>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-argon-s3">[Pivoted East · assistant #289 · Confirms (+X, -Z) and switches toward +X]</span>
+                  <div class="io-raw">我发现世界树（`whole-structure/world-tree`）的信标精确坐标为 `(x=147.0, z=91.0)`，即位于草甸（`x=100, z=122`）的 `+X` 与 `-Z`（北）方向！我将立即沿车辙路向 `+X` 方向前往 `x=120..147, z=116`，进入主城并北上世界树。</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-argon-s4">[Confirmed Gate · tool_result #306 · Arrives at East Gate (126,121)]</span>
+                  <div class="io-raw">{&quot;x&quot;:126.0,&quot;z&quot;:122.0,&quot;needs&quot;:{&quot;active&quot;:true,&quot;at_ms&quot;:3538713,&quot;energy&quot;:29.099852,&quot;food&quot;:70.327365,&quot;health&quot;:100.0,&quot;maxima&quot;:{&quot;energy&quot;:100,&quot;food&quot;:100,&quot;health&quot;:100},&quot;maximum&quot;:100}}
+=== NPCS ===
+[]
+=== NODES ===
+[{&quot;id&quot;:&quot;town-curtain/gate/31102/16&quot;,&quot;name&quot;:&quot;主城折肩拱冠门楼&quot;,&quot;type&quot;:&quot;building&quot;,&quot;pos&quot;:{&quot;x&quot;:126.0,&quot;y&quot;:1.0,&quot;z&quot;:121.0}</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="terrain">
+                <div class="io-col-head">
+                  <strong>deepseek-v4-flash</strong>
+                  <span class="io-pill mid" data-i18n="ins-dsv4f-pill">Wall-triggered · 24.5 min</span>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-dsv4f-s2">[Blocked West · reasoning #280 · Hits wall again at x=83.5]</span>
+                  <div class="io-raw">Only moved 1 cell (84.5-&gt;83.5) over 12 commands — blocked by wall again at x=83.5. So there&#x27;s a wall at x~83.5 at z=116.5.</div>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-dsv4f-s3">[Pivoted East · assistant #285 · Reads (147,91) beacon and turns northeast]</span>
+                  <div class="io-raw">The world-tree beacon is at (147, 91) — the city is actually northeast, not west (青禾&#x27;s directions are translated/flavor text). Let me navigate toward the beacon. First back east into open ground.</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-dsv4f-s4">[Confirmed Gate · tool_result #717 · Observes East Gate at (126,121)]</span>
+                  <div class="io-raw">{&quot;nm&quot;: &quot;主城折肩拱冠门楼&quot;, &quot;x&quot;: 126.0, &quot;z&quot;: 121.0, &quot;r&quot;: false, &quot;u&quot;: [], &quot;t&quot;: &quot;building&quot;, &quot;id&quot;: &quot;town-curtain/gate/31102/16&quot;}</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-dsv4f-s5">[Confirmed Location · tool_result #823 · Reaches (144.5,102.5) with World Tree (147,91) in view]</span>
+                  <div class="io-raw">--obs--
+{&quot;nm&quot;: &quot;世界树完整根干冠装配&quot;, &quot;x&quot;: 147.0, &quot;z&quot;: 91.0, &quot;r&quot;: false, &quot;u&quot;: [], &quot;t&quot;: &quot;building&quot;}</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="terrain">
+                <div class="io-col-head">
+                  <strong>grok-4.7</strong>
+                  <span class="io-pill mid" data-i18n="ins-grok-pill">Wall-triggered · 32.6 min</span>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-grok-s0">[Followed NPC · assistant #273 · Follows “north 5–6 steps, west 20 steps”]</span>
+                  <div class="io-raw">路她说清楚了：先北上五六步到车辙，再沿路向西二十步就是东门。我按这个走。</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-grok-s2">[Confirmed Location · tool_result #672 · Inside World Tree beacon (inZone: True at 147,95)]</span>
+                  <div class="io-raw">NOW 147.0 95.0 seq 928 food 39.9 energy 43.4
+beacon {&#x27;events&#x27;: [], &#x27;inZone&#x27;: True, &#x27;integrity&#x27;: {&#x27;current&#x27;: 480, &#x27;max&#x27;: 480}, &#x27;nodeId&#x27;: &#x27;whole-structure/world-tree&#x27;, &#x27;position&#x27;: {&#x27;x&#x27;: 147.0, &#x27;z&#x27;: 91.0}, &#x27;radius&#x27;: 7.0, &#x27;status&#x27;: &#x27;active&#x27;}</div>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-grok-s1">[Notes Patched · assistant #1300 · Explicitly names the “20 steps west” line wrong]</span>
+                  <div class="io-raw">她说东门在草地西边二十步——这条还是错的，门在东边 126,121。</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="terrain">
+                <div class="io-col-head">
+                  <strong>glm-5.3</strong>
+                  <span class="io-pill mid" data-i18n="ins-glm-pill">Wall-triggered · 36.3 min</span>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-glm-s1">[Conflict Detected · assistant #573 · Realizes went the wrong way; beacon is northeast]</span>
+                  <div class="io-raw">我走反了——世界树在 (147,91) 东北方向，主城应该在那边。放弃西边，回头向东北走。</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-glm-s3">[Confirmed Gate · tool_result #727 · Arrives facing East Gate (126,121)]</span>
+                  <div class="io-raw">arrived at 118,121
+  town-curtain/gate/31102/16 | 主城折肩拱冠门楼 | 126.0 121.0 | uses: []</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-glm-s4">[Confirmed Location · tool_result #876 · Inside World Tree beacon (inZone: true at 144,91)]</span>
+                  <div class="io-raw">arrived at 144,91
+  whole-structure/world-tree | 世界树完整根干冠装配 | 147.0 91.0 | uses: []
+beacon: {&quot;events&quot;: [], &quot;inZone&quot;: true, &quot;integrity&quot;: {&quot;current&quot;: 480, &quot;max&quot;: 480}, &quot;nodeId&quot;: &quot;whole-structure/world-tree&quot;, &quot;position&quot;: {&quot;x&quot;: 147.0, &quot;z&quot;: 91.0}, &quot;radius&quot;: 7.0, &quot;status&quot;: &quot;active&quot;}</div>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-glm-s2">[Notes Patched · assistant #893 · Calls Qinghe's “west” a slip; summarizes real route]</span>
+                  <div class="io-raw">找到东门 (126,121) 主城折肩拱冠门楼——青禾说的“向西”其实是笔误，从草甸沿 z=121 向东直走就到</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="terrain">
+                <div class="io-col-head">
+                  <strong>muse-wonder</strong>
+                  <span class="io-pill mid" data-i18n="ins-muse-pill">Wall-triggered · 39.7 min</span>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-muse-s1">[Blocked West · assistant #282 · Finds west road broken; turns north to (88,98)]</span>
+                  <div class="io-raw">路面往西是断的，北、东可通。我先北上到路口 (88,98) 再看。</div>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-muse-s2">[Conflict Detected · assistant #288 · Sees city wall east at x≈104: city is east!]</span>
+                  <div class="io-raw">重大发现：这里有地下城入口「废弃排水廊」(96,97)，而且东边 x≈104 是主城城墙——城在东边！我先往城墙去找东门。</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-muse-s4">[Confirmed Location · tool_result #460 &amp; #469 · Arrives at (143,94) south of World Tree]</span>
+                  <div class="io-raw">at cell (140, 93) target (143, 94) d=(3,1)
+at cell (143, 94) target (143, 94) d=(0,0)
+ARRIVED
+hop (143, 94) True | **当前状态**：位于世界树南 (143,94)，精力约 26、饱食约 37（刚吃过浆果）、健康 100。背包：berries×3、treeSeed×1、wood×7、石斧×2。队伍已创建（单人队长）。
+
+**本轮成果**
+- 接下两个 expedition 任务：砺午《This Time, Say the Shift Is Over》（废弃矿洞）和雪葵《Even the Long Night Has an End of Watch》（严寒地牢）</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="terrain">
+                <div class="io-col-head">
+                  <strong>gpt-6-astra</strong>
+                  <span class="io-pill mid" data-i18n="ins-astra-pill">Wall-triggered · 39.8 min</span>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-astra-s1">[Conflict Detected · assistant #416 · Blocked west; stops trusting verbal route after reading (147,91)]</span>
+                  <div class="io-raw">已找到南侧缓坡路线，但途中实际移动受阻，停下后重新规划，没有继续撞障碍；吃了携带果实，生命仍满，发现已记入日志。另有世界树公开信标指向东北方 `(147,91)`，下一轮会据此重新判断方向，不再只按口述路线向西找城门。</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-astra-s3">[Confirmed Gate · tool_result #531 · Reaches East Gate (126,121)]</span>
+                  <div class="io-raw">POS 121.0 121.0
+NODES [(&#x27;town-curtain/gate/31102/16&#x27;, &#x27;主城折肩拱冠门楼&#x27;, {&#x27;x&#x27;: 126.0, &#x27;y&#x27;: 1.0, &#x27;z&#x27;: 121.0}, [])</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-astra-s4">[Confirmed Location · tool_result #585 · Arrives at (141,93) beside World Tree (147,91)]</span>
+                  <div class="io-raw">POS 141.0 93.0
+NODES [(&#x27;whole-structure/gear&#x27;, &#x27;剑盾折翼商店&#x27;, {&#x27;x&#x27;: 133.5, &#x27;y&#x27;: 0.875, &#x27;z&#x27;: 96.0}, []), (&#x27;whole-structure/potion&#x27;, &#x27;露水山墙药屋&#x27;, {&#x27;x&#x27;: 134.0, &#x27;y&#x27;: 0.875, &#x27;z&#x27;: 87.0}, []), (&#x27;whole-structure/world-tree&#x27;, &#x27;世界树完整根干冠装配&#x27;, {&#x27;x&#x27;: 147.0, &#x27;y&#x27;: 1.0, &#x27;z&#x27;: 91.0}, [])</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="terrain">
+                <div class="io-col-head">
+                  <strong>gemini-3.8-flash</strong>
+                  <span class="io-pill mid" data-i18n="ins-gem38-pill">Wall-triggered · 66.6 min</span>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-gem38-s1">[Followed NPC · assistant #588 · Writes walk_west_to_gate.py along Qinghe's route]</span>
+                  <div class="io-raw">I will write `walk_west_to_gate.py` to walk west along the road toward the East Gate.</div>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-gem38-s2">[Misled West · reasoning #1019 · Mistakes (84,116) west gap for the East Gate]</span>
+                  <div class="io-raw">Ah, fantastic! I&#x27;ve successfully breached the eastern gate. My current coordinates are `(84.0, 116.0)`. Now, the objective is to head north into the city. I&#x27;ve got a crucial piece of intel: &quot;进了东门往北走三十来步到世界树&quot; (Entered the east gate, walk north about thirty steps to the World Tree).</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-gem38-s4">[Confirmed Location · tool_result #1667 · Inside World Tree beacon (inZone=True at 153,94)]</span>
+                  <div class="io-raw">Position: (153.0, 94.0), ok=True
+  Beacon: inZone=True, integrity={&#x27;current&#x27;: 480, &#x27;max&#x27;: 480}, pos={&#x27;x&#x27;: 147.0, &#x27;z&#x27;: 91.0}
+  Tree nodes: [(&#x27;世界树完整根干冠装配&#x27;, {&#x27;x&#x27;: 147.0, &#x27;y&#x27;: 1.0, &#x27;z&#x27;: 91.0})]
+&gt;&gt;&gt; ARRIVED INSIDE WORLD TREE ZONE! &lt;&lt;&lt;</div>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-gem38-s3">[Conflict Detected · reasoning #5931 · Reviews script later and catches the contradiction]</span>
+                  <div class="io-raw">Right, I&#x27;ve just reviewed the `walk_west_to_gate.py` script, and my immediate reaction is, &quot;Wait a minute!&quot; It&#x27;s clearly stating it walked west *towards* the East Gate, which seems like a fundamental contradiction. I need to get to the bottom of this.
+
+Okay, so where exactly did this journey begin? I&#x27;m looking at `DISCOVERY.md` for context. Ah, here it is: &quot;东门与前庭商业设施 (East Gate &amp; Forecourt): 主城折肩拱冠门楼 (东大拱门): (126.0, 121.0)&quot;. So, the East Gate of the Main City is definitively located at coordinates `(126.0, 121.0)`.</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="terrain">
+                <div class="io-col-head">
+                  <strong>claude-sonnet-5-5</strong>
+                  <span class="io-pill mid" data-i18n="ins-sonnet-pill">Wall-triggered · 98.7 min</span>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-sonnet-s1">[Followed NPC · assistant #141 · Records town to the west per Qinghe]</span>
+                  <div class="io-raw">Qinghe pointed me toward the town to the west and a story contact to the south.</div>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-sonnet-s2">[Conflict Detected · reasoning #153 · Spots (147,91) east of meadow; recalculates gate]</span>
+                  <div class="io-raw">The world tree beacon sits at (147,91), which is actually east of the meadow at (100,121)—contradicting my assumption that the city lies west, so I&#x27;m recalculating: if the tree is 30 steps north of the east gate, the gate itself might be closer to (147,121).</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-sonnet-s4">[Confirmed Entry · tool_result #266 &amp; #268 · Enters via (126,123) gate and arrives at (139,100)]</span>
+                  <div class="io-raw">at 126.0 123.0
+-1 found
+-2 found
+-3 found
+-4 found
+-5 found
+-6 found
+-7 found -&gt; at 139.0 100.0
+arrived
+END 139.0 100.0
+{&#x27;day&#x27;: 1, &#x27;phase&#x27;: &#x27;dawn&#x27;, &#x27;radius&#x27;: 8, &#x27;max_radius&#x27;: 8, &#x27;cycle_ms&#x27;: 1440000}</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="terrain">
+                <div class="io-col-head">
+                  <strong>deepseek-v4.1-flash</strong>
+                  <span class="io-pill mid" data-i18n="ins-dsv41f-pill">Wall-triggered · 95.1 min</span>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-dsv41f-s1">[Followed NPC · reasoning #206 · Plans west to x≈80 along wagon road]</span>
+                  <div class="io-raw">Now let&#x27;s go to town: walk north to the wagon road then west 20 steps to east gate. From caretaker, the road is ~5-6 steps north: cell z ≈ 116-117? We are at (101,122). Walk to (101,116) then west to gate around x≈80?</div>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-dsv41f-s3">[Conflict Detected · reasoning #520 · Discovers actual city gate at (126,121) east]</span>
+                  <div class="io-raw">Found the city gate: 主城折肩拱冠门楼 at (126,121)! And 主城连砌直墙 at (130,120). My explorer is looping on a rejected target. Need to fix: when reject, blacklist that target. Let me kill it and fix.
+
+Also note the gate at cell (126,121) — that&#x27;s east... wait I&#x27;m at (123,126). The gate is at x=126, z=121. So the city is to the north-east of the meadow. Interesting—青禾 said &quot;北走五六步到车辙路，沿路往西二十来步是主城东门&quot;. Hmm, but actual gate found at (126,121).</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-dsv41f-s4">[Confirmed Gate · tool_result #529 · Observes East Gate (126,121)]</span>
+                  <div class="io-raw">主城折肩拱冠门楼 {&#x27;x&#x27;: 126.0, &#x27;y&#x27;: 1.0, &#x27;z&#x27;: 121.0} []
+门庭矮柱罩灯 {&#x27;x&#x27;: 122.0, &#x27;y&#x27;: 1.0, &#x27;z&#x27;: 125.0} []
+门庭矮柱罩灯 {&#x27;x&#x27;: 123.0, &#x27;y&#x27;: 1.0, &#x27;z&#x27;: 118.0} []</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-dsv41f-s5">[Confirmed Location · tool_result #1187 · Arrives at (145,89), 2.1 cells from World Tree]</span>
+                  <div class="io-raw">(&#x27;arrived&#x27;, 28, (145, 89))
+pose=[2328, 16, 1432] cell=(145,89) E74 F53 H86 bag={&#x27;berries&#x27;: 7, &#x27;cloth&#x27;: 4, &#x27;fiber&#x27;: 11, &#x27;grain&#x27;: 4, &#x27;iron&#x27;: 10, &#x27;seed&#x27;: 2, &#x27;stone&#x27;: 12, &#x27;treeSeed&#x27;: 2, &#x27;wood&#x27;: 15} lvl=1 xp=0
+whole-structure/world-tree                       d=2.1</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="trapped">
+                <div class="io-col-head">
+                  <strong>kimi-k3.1-pro</strong>
+                  <span class="io-pill trap" data-i18n="ins-kimi-pill">143.3 min delay (authority bias)</span>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-kimi-s1">[Conflict Detected · assistant #1374 · Sees (147,91) beacon and starts heading East]</span>
+                  <div class="io-raw">观察中的世界树信标给出了确切位置 `(147,91)`。我不再绕西墙，改从草甸道路继续向东，尝试从南侧接近世界树。</div>
+                </div>
+                <div class="io-step out-trap">
+                  <span class="io-role" data-i18n="ins-kimi-s2">[Overrode Sensor · assistant #1381 · 7 steps later: re-reads Qinghe &amp; turns back west]</span>
+                  <div class="io-raw">青禾的原话确认“往西二十来步”就是东门，且不要绕墙。我之前穿过了路口却没检查 `(84,116)` 那块孤立路面；现在回到这里核实是否为门或传送入口。</div>
+                </div>
+                <div class="io-step confirm">
+                  <span class="io-role" data-i18n="ins-kimi-s4">[Confirmed Location · tool_result #1592 · Finally reaches (144,91) beside World Tree (147,91)]</span>
+                  <div class="io-raw">STATE {&quot;xyz&quot;: [144.0, 1.0, 91.0], &quot;needs&quot;: {&quot;active&quot;: true, &quot;at_ms&quot;: 12841400, &quot;energy&quot;: 37.658664, &quot;food&quot;: 30.425735, &quot;health&quot;: 100.0, &quot;maxima&quot;: {&quot;energy&quot;: 100, &quot;food&quot;: 100, &quot;health&quot;: 100}, &quot;maximum&quot;: 100}, &quot;next_seq&quot;: 1030}
+NODES [{&quot;id&quot;: &quot;whole-structure/world-tree&quot;, &quot;name&quot;: &quot;世界树完整根干冠装配&quot;, &quot;type&quot;: &quot;building&quot;, &quot;position&quot;: {&quot;x&quot;: 147.0, &quot;y&quot;: 1.0, &quot;z&quot;: 91.0}, &quot;reachable&quot;: false, &quot;uses&quot;: []}]</div>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-kimi-s3">[Late Pivot · assistant #2232 · Later confirms West/East was reversed]</span>
+                  <div class="io-raw">青禾所说的“西”与实际坐标相反，店铺更可能在世界树东侧。出发长途搜索前，我先利用附近石料重做一把石斧，避免耐久只剩 13。</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="trapped">
+                <div class="io-col-head">
+                  <strong>kimi-k3</strong>
+                  <span class="io-pill trap" data-i18n="ins-kimik3-pill">Trapped west · 7h unsolved</span>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-kimik3-s1">[Followed NPC · reasoning #84 · Parses Qinghe's “west ~20 steps” as east gate]</span>
+                  <div class="io-raw">- Main city east gate: go north 5-6 steps to the rutted road, then west ~20 steps. Don&#x27;t go north along the wall.</div>
+                </div>
+                <div class="io-step out-trap">
+                  <span class="io-role" data-i18n="ins-kimik3-s2">[Blocked West · reasoning #305 · Re-cites Qinghe while probing west wall at x≈90.5]</span>
+                  <div class="io-raw">Blocked west at (90.5,117.5) with no visible obstacle — possibly the city wall runs north-south at x≈89 and the gate is elsewhere, or terrain elevation. Qinghe said the gate is reached by the rutted road west — and warned &quot;别顺着城墙往北绕，那边一路都是墙&quot; (don&#x27;t follow the wall north).</div>
+                </div>
+                <div class="io-step out-trap">
+                  <span class="io-role" data-i18n="ins-kimik3-s4">[Confirmed Unreached · tool_result #2127 · At 7h mark still at meadow (99,121), never reached gate/tree]</span>
+                  <div class="io-raw">{&quot;action&quot;: &quot;step&quot;, &quot;controller&quot;: &quot;agent&quot;, &quot;seq&quot;: 2262, &quot;status&quot;: &quot;committed&quot;, &quot;at_ms&quot;: 25387475, &quot;x&quot;: 99.0, &quot;z&quot;: 121.0,</div>
+                </div>
+              </div>
+
+              <div class="io-col" data-tier="trapped">
+                <div class="io-col-head">
+                  <strong>mimo-v2.6-pro</strong>
+                  <span class="io-pill trap" data-i18n="ins-mimo-pill">Trapped west · 7h unsolved</span>
+                </div>
+                <div class="io-step out-good">
+                  <span class="io-role" data-i18n="ins-mimo-s1">[Saw Beacon Early · reasoning #44 · Notes [147,91] beacon at start without connecting it]</span>
+                  <div class="io-raw">A &quot;world-tree&quot; beacon at [147,91] radius 7.</div>
+                </div>
+                <div class="io-step out-warn">
+                  <span class="io-role" data-i18n="ins-mimo-s2">[Followed NPC · assistant #297 · Records walled city to the west per Qinghe]</span>
+                  <div class="io-raw">This is herbalist 青禾 (Qinghe), who offers practice lessons and gave rich directions — there&#x27;s a walled city to the west (east gate), a World Tree, bakery, market, and a tower. Let me see the dialogue choices.</div>
+                </div>
+                <div class="io-step out-trap">
+                  <span class="io-role" data-i18n="ins-mimo-s4">[Confirmed Unreached · tool_result #2898 · Final observation at [232,0,104] (local), never entered East Gate]</span>
+                  <div class="io-raw">enemies: 0
+items: 0
+walkable x 8 20 z 2 9 n 57
+my pos [[13, [232, 0, 104]]]</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+  <footer><a class="brand" href="/" data-i18n="footer-brand">ASI Game World</a></footer>
+  <script src="/i18n.js?v=37"></script>
+          <script>
+    const tabs = [...document.querySelectorAll('.analysis-tab')];
+    const panes = [...document.querySelectorAll('.analysis-pane')];
+    function paneFromHash() {
+      const h = location.hash.slice(1);
+      if (!h) return 'profiles';
+      if (h.includes('=')) return new URLSearchParams(h).get('pane') || 'profiles';
+      return h;
+    }
+    function selectPane(id, pushHash) {
+      if (!panes.some(p => p.dataset.pane === id)) id = 'profiles';
+      tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.pane === id ? 'true' : 'false'));
+      panes.forEach(p => p.toggleAttribute('data-active', p.dataset.pane === id));
+      if (pushHash) history.replaceState(null, '', '#' + id);
+    }
+    tabs.forEach(t => t.addEventListener('click', () => selectPane(t.dataset.pane, true)));
+    selectPane(paneFromHash(), false);
+    window.addEventListener('hashchange', () => selectPane(location.hash.slice(1) ? paneFromHash() : 'profiles', false));
+    const ioBtns = [...document.querySelectorAll('.io-filter-btn')];
+    const ioCols = [...document.querySelectorAll('.io-col[data-tier]')];
+    ioBtns.forEach(btn => btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      ioBtns.forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      ioCols.forEach(c => c.classList.toggle('is-hidden', tier !== 'all' && c.dataset.tier !== tier));
+    }));
+  </script>
+  <script src="/model-cards.js?v=26"></script>
+</body>
+</html>

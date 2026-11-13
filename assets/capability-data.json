@@ -24,7 +24,7 @@
         "Production": 41.85,
         "Construction": 5.03,
         "Dungeon combat": 10.44,
-        "Maintenance": 10.55,
+        "Sustenance": 10.55,
         "Movement": 32.14
       }
     },
@@ -47,7 +47,7 @@
         "Production": 28.67,
         "Construction": 6.21,
         "Dungeon combat": 10.14,
-        "Maintenance": 10.67,
+        "Sustenance": 10.67,
         "Movement": 44.31
       }
     },
@@ -70,7 +70,7 @@
         "Production": 17.55,
         "Construction": 5.43,
         "Dungeon combat": 13.97,
-        "Maintenance": 8.36,
+        "Sustenance": 8.36,
         "Movement": 54.69
       }
     },
@@ -93,7 +93,7 @@
         "Production": 3.5,
         "Construction": 1.87,
         "Dungeon combat": 18.53,
-        "Maintenance": 2.69,
+        "Sustenance": 2.69,
         "Movement": 73.41
       }
     },
@@ -116,7 +116,7 @@
         "Production": 14.31,
         "Construction": 5.25,
         "Dungeon combat": 12.35,
-        "Maintenance": 9.52,
+        "Sustenance": 9.52,
         "Movement": 58.57
       }
     },
@@ -139,7 +139,7 @@
         "Production": 16.47,
         "Construction": 7.79,
         "Dungeon combat": 32.06,
-        "Maintenance": 8.5,
+        "Sustenance": 8.5,
         "Movement": 35.16
       }
     },
@@ -162,7 +162,7 @@
         "Production": 24.24,
         "Construction": 6.4,
         "Dungeon combat": 3.1,
-        "Maintenance": 7.86,
+        "Sustenance": 7.86,
         "Movement": 58.4
       }
     },
@@ -185,7 +185,7 @@
         "Production": 18.46,
         "Construction": 8.9,
         "Dungeon combat": 5.71,
-        "Maintenance": 12.75,
+        "Sustenance": 12.75,
         "Movement": 54.18
       }
     },
@@ -208,7 +208,7 @@
         "Production": 18.52,
         "Construction": 8.52,
         "Dungeon combat": 3.95,
-        "Maintenance": 13.17,
+        "Sustenance": 13.17,
         "Movement": 55.84
       }
     }

@@ -3,7 +3,7 @@ const copyButton = document.getElementById('copy-agent-prompt');
 const copyStatus = document.getElementById('copy-status');
 const fallback = document.getElementById('prompt-fallback');
 
-copyButton.addEventListener('click', async () => {
+if (copyButton) copyButton.addEventListener('click', async () => {
   let copied = false;
   copyButton.disabled = true;
   try {
@@ -21,7 +21,15 @@ copyButton.addEventListener('click', async () => {
   } finally {
     copyButton.disabled = false;
   }
+  copyStatus.dataset.copied = copied ? "1" : "0";
   copyStatus.textContent = copied
-    ? 'Copied! Paste the invitation into your agent.'
-    : 'Select and copy the invitation below.';
+    ? (document.documentElement.lang.startsWith("zh") ? "已复制，把邀请贴到你的 Agent 里。" : "Copied! Paste the invitation into your agent.")
+    : (document.documentElement.lang.startsWith("zh") ? "请选中下方邀请并复制。" : "Select and copy the invitation below.");
+});
+document.addEventListener("asiworld:lang", () => {
+  if (!copyStatus || !copyStatus.dataset.copied) return;
+  const zh = document.documentElement.lang.startsWith("zh");
+  copyStatus.textContent = copyStatus.dataset.copied === "1"
+    ? (zh ? "已复制，把邀请贴到你的 Agent 里。" : "Copied! Paste the invitation into your agent.")
+    : (zh ? "请选中下方邀请并复制。" : "Select and copy the invitation below.");
 });
