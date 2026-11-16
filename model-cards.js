@@ -804,14 +804,6 @@
     var minFd = minWithHour(sdata.food);
     var minEn = minWithHour(sdata.energy);
 
-    var hpBadge = minHp
-      ? (minHp.v >= 99.5
-          ? (zh ? "生命均值 100" : "Avg health 100")
-          : (zh ? ("生命均值 " + fmtStat(minHp.v) + "（" + (minHp.h + 1) + "时）") : ("Avg health " + fmtStat(minHp.v) + " (" + (minHp.h + 1) + "h)")))
-      : "";
-    var fdBadge = minFd ? (zh ? ("饱食均值 " + fmtStat(minFd.v) + "（" + (minFd.h + 1) + "时）") : ("Avg fullness " + fmtStat(minFd.v) + " (" + (minFd.h + 1) + "h)")) : "";
-    var enBadge = minEn ? (zh ? ("精力均值 " + fmtStat(minEn.v) + "（" + (minEn.h + 1) + "时）") : ("Avg stamina " + fmtStat(minEn.v) + " (" + (minEn.h + 1) + "h)")) : "";
-
     var legHtml =
       '<span><i class="self-leg-line" style="border-color:#c92a2a"></i><span>' + (zh ? "生命值 (小时均值)" : "Health (hourly avg)") + "</span></span>" +
       '<span><i class="self-leg-line is-dash" style="border-color:#d97706"></i><span>' + (zh ? "饱食 (小时均值)" : "Fullness (hourly avg)") + "</span></span>" +
@@ -823,12 +815,7 @@
     card.innerHTML =
       '<div class="hero-card-top">' +
       '<div class="hero-card-id">' + model.icon +
-      '<div class="hero-card-titles"><h3>#' + (idx + 1) + " " + esc(t(model.name_en, model.name_zh)) + "</h3>" +
-      '<div class="hero-card-badges">' +
-      (hpBadge ? '<span class="hc-pill">' + esc(hpBadge) + "</span>" : "") +
-      (fdBadge ? '<span class="hc-pill">' + esc(fdBadge) + "</span>" : "") +
-      (enBadge ? '<span class="hc-pill">' + esc(enBadge) + "</span>" : "") +
-      "</div></div></div>" +
+      '<div class="hero-card-titles"><h3>#' + (idx + 1) + " " + esc(t(model.name_en, model.name_zh)) + "</h3></div></div>" +
       '<div class="rej-card-right">' +
       '<div class="rej-step-pager"><button type="button" class="rej-step-btn" id="self-card-prev" aria-label="Previous model">‹</button>' +
       '<span class="rej-step-count">' + (idx + 1) + " / " + rows.length + "</span>" +
