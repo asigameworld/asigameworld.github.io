@@ -13,6 +13,25 @@
   <link rel="stylesheet" href="/benchmark/hero.css?v=4">
   <style>
     .self-panel { margin-top: 16px; }
+    .self-scorebox-trio {
+      display: inline-flex; align-items: stretch; gap: 0;
+      padding: 8px 6px !important; text-align: right;
+    }
+    .self-scorebox-col {
+      padding: 2px 12px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
+    }
+    .self-scorebox-col + .self-scorebox-col {
+      border-left: 1px solid #dce6e0;
+    }
+    .self-scorebox-trio .scorebox-label {
+      font-size: 10.5px; white-space: nowrap; margin-bottom: 1px;
+    }
+    .self-scorebox-trio .scorebox-val {
+      font-size: 24px; line-height: 1.12;
+    }
+    .self-scorebox-trio .scorebox-val.is-hp { color: #c92a2a; }
+    .self-scorebox-trio .scorebox-val.is-fd { color: #b45309; }
+    .self-scorebox-trio .scorebox-val.is-en { color: #0f766e; }
     .self-leg-line { display: inline-block; width: 16px; height: 0; border-top: 2.5px solid #c92a2a; vertical-align: middle; margin-right: 5px; }
     .self-leg-line.is-dash { border-top-style: dashed; border-top-width: 2px; }
     .self-leg-line.is-dot { border-top-style: dotted; border-top-width: 2.2px; }
@@ -959,6 +978,6 @@ my pos [[13, [232, 0, 104]]]</div>
       ioCols.forEach(c => c.classList.toggle('is-hidden', tier !== 'all' && c.dataset.tier !== tier));
     }));
   </script>
-  <script src="/model-cards.js?v=55"></script>
+  <script src="/model-cards.js?v=56"></script>
 </body>
 </html>

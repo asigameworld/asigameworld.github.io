@@ -833,8 +833,11 @@
       '<div class="rej-step-pager"><button type="button" class="rej-step-btn" id="self-card-prev" aria-label="Previous model">‹</button>' +
       '<span class="rej-step-count">' + (idx + 1) + " / " + rows.length + "</span>" +
       '<button type="button" class="rej-step-btn" id="self-card-next" aria-label="Next model">›</button></div>' +
-      '<div class="hero-card-scorebox"><span class="scorebox-label">' + (zh ? "生命小时均值" : "Hourly avg health") + "</span>" +
-      '<span class="scorebox-val">' + (minHp ? fmtStat(minHp.v) : "–") + "</span></div></div></div>" +
+      '<div class="hero-card-scorebox self-scorebox-trio">' +
+      '<div class="self-scorebox-col"><span class="scorebox-label">' + (zh ? "生命小时均值" : "Hourly avg health") + '</span><span class="scorebox-val is-hp">' + (minHp ? fmtStat(minHp.v) : "–") + "</span></div>" +
+      '<div class="self-scorebox-col"><span class="scorebox-label">' + (zh ? "饱食小时均值" : "Hourly avg fullness") + '</span><span class="scorebox-val is-fd">' + (minFd ? fmtStat(minFd.v) : "–") + "</span></div>" +
+      '<div class="self-scorebox-col"><span class="scorebox-label">' + (zh ? "精力小时均值" : "Hourly avg stamina") + '</span><span class="scorebox-val is-en">' + (minEn ? fmtStat(minEn.v) : "–") + "</span></div>" +
+      "</div></div></div>" +
       '<div class="radar-panel self-panel">' +
       '<div class="radar-panel-head rej-panel-head"><h4>' +
       (zh ? "每小时工作占比与生命 / 饱食 / 精力均值 (0–100)" : "Hourly Work Mix &amp; Health / Fullness / Stamina Averages (0–100)") +
