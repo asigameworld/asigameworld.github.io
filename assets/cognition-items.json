@@ -1,0 +1,431 @@
+{
+ "tools": [
+  {
+   "key": "axe",
+   "en": "Stone axe",
+   "zh": "斧头",
+   "tier": "T1",
+   "icon": "axe"
+  },
+  {
+   "key": "bow",
+   "en": "Shortbow",
+   "zh": "短弓",
+   "tier": "T1",
+   "icon": "bow"
+  },
+  {
+   "key": "healingStaff",
+   "en": "Verdant staff",
+   "zh": "治疗杖",
+   "tier": "T1",
+   "icon": "healingStaff"
+  },
+  {
+   "key": "spear",
+   "en": "Hunting spear",
+   "zh": "长矛",
+   "tier": "T1",
+   "icon": "spear"
+  },
+  {
+   "key": "shield",
+   "en": "Wooden shield",
+   "zh": "盾牌",
+   "tier": "T1",
+   "icon": "shield"
+  },
+  {
+   "key": "torch",
+   "en": "Torch",
+   "zh": "火把",
+   "tier": "T1",
+   "icon": "torch"
+  },
+  {
+   "key": "jacket",
+   "en": "Hide coat",
+   "zh": "皮夹克",
+   "tier": "T1",
+   "icon": "jacket"
+  },
+  {
+   "key": "satchel",
+   "en": "Cloth satchel",
+   "zh": "挎包",
+   "tier": "T1",
+   "icon": "satchel"
+  },
+  {
+   "key": "strawHat",
+   "en": "Straw hat",
+   "zh": "草帽",
+   "tier": "T1",
+   "icon": "strawHat"
+  },
+  {
+   "key": "ironSword",
+   "en": "Refined iron sword",
+   "zh": "铁剑",
+   "tier": "T2",
+   "icon": "ironSword"
+  },
+  {
+   "key": "longbow",
+   "en": "Composite longbow",
+   "zh": "长弓",
+   "tier": "T2",
+   "icon": "longbow"
+  },
+  {
+   "key": "ironArmor",
+   "en": "Refined iron armor",
+   "zh": "铁甲",
+   "tier": "T2",
+   "icon": "ironArmor"
+  },
+  {
+   "key": "rucksack",
+   "en": "Frame rucksack",
+   "zh": "背包",
+   "tier": "T2",
+   "icon": "rucksack"
+  },
+  {
+   "key": "starBlade",
+   "en": "Starfall blade",
+   "zh": "星刃",
+   "tier": "T3",
+   "icon": "starBlade"
+  },
+  {
+   "key": "starArmor",
+   "en": "Starwoven armor",
+   "zh": "星甲",
+   "tier": "T3",
+   "icon": "starArmor"
+  }
+ ],
+ "foods": [
+  {
+   "key": "berries",
+   "en": "Berries",
+   "zh": "浆果",
+   "kind": "gathered",
+   "icon": "berries"
+  },
+  {
+   "key": "orchardFruit",
+   "en": "Orchard fruit",
+   "zh": "野蜜果",
+   "kind": "gathered",
+   "icon": "orchardFruit"
+  },
+  {
+   "key": "goldenFruit",
+   "en": "Golden fruit",
+   "zh": "金色果实",
+   "kind": "gathered",
+   "icon": "goldenFruit"
+  },
+  {
+   "key": "mushroom",
+   "en": "Mushroom",
+   "zh": "蘑菇",
+   "kind": "gathered",
+   "icon": "mushroom"
+  },
+  {
+   "key": "leafyGreens",
+   "en": "Leafy greens",
+   "zh": "绿叶菜",
+   "kind": "gathered",
+   "icon": "leafyGreens"
+  },
+  {
+   "key": "meat",
+   "en": "Meat",
+   "zh": "生肉",
+   "kind": "gathered",
+   "icon": "meat"
+  },
+  {
+   "key": "meal",
+   "en": "Cooked meal",
+   "zh": "熟食",
+   "kind": "cooked",
+   "icon": "meal"
+  },
+  {
+   "key": "grainMeal",
+   "en": "Grain meal",
+   "zh": "谷物熟食",
+   "kind": "cooked",
+   "icon": "meal"
+  },
+  {
+   "key": "roast",
+   "en": "Roast",
+   "zh": "烤肉熟食",
+   "kind": "cooked",
+   "icon": "meal"
+  },
+  {
+   "key": "ration",
+   "en": "Ration",
+   "zh": "干粮",
+   "kind": "cooked",
+   "icon": "ration"
+  },
+  {
+   "key": "grainRation",
+   "en": "Grain ration",
+   "zh": "麦香干粮",
+   "kind": "cooked",
+   "icon": "ration"
+  }
+ ],
+ "tool_groups": [
+  {
+   "id": "T1",
+   "en": "Tier 1",
+   "zh": "一级"
+  },
+  {
+   "id": "T2",
+   "en": "Tier 2",
+   "zh": "二级"
+  },
+  {
+   "id": "T3",
+   "en": "Tier 3",
+   "zh": "三级"
+  }
+ ],
+ "food_groups": [
+  {
+   "id": "gathered",
+   "en": "Gathered",
+   "zh": "采集"
+  },
+  {
+   "id": "cooked",
+   "en": "Cooked",
+   "zh": "烹饪"
+  }
+ ],
+ "models": {
+  "fable-cc": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "goldenFruit": 1,
+    "meal": 1,
+    "meat": 1
+   },
+   "tools": {
+    "axe": 1,
+    "jacket": 1,
+    "satchel": 1,
+    "shield": 1,
+    "spear": 1,
+    "strawHat": 1,
+    "torch": 1,
+    "ironArmor": 1,
+    "ironSword": 1,
+    "rucksack": 1,
+    "starArmor": 1,
+    "starBlade": 1
+   }
+  },
+  "opus55": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "meal": 1,
+    "meat": 1
+   },
+   "tools": {
+    "axe": 1,
+    "satchel": 1,
+    "shield": 1,
+    "spear": 1,
+    "strawHat": 1,
+    "torch": 1,
+    "starArmor": 1,
+    "starBlade": 1
+   }
+  },
+  "opus5": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "leafyGreens": 1,
+    "meal": 1
+   },
+   "tools": {
+    "axe": 1,
+    "ironSword": 1,
+    "starBlade": 1
+   }
+  },
+  "sonnet55": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "meal": 1,
+    "meat": 1,
+    "orchardFruit": 1
+   },
+   "tools": {
+    "axe": 1,
+    "healingStaff": 1,
+    "spear": 1,
+    "ironSword": 1
+   }
+  },
+  "gemini4argon": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "meat": 1
+   },
+   "tools": {
+    "axe": 1,
+    "spear": 1,
+    "strawHat": 1,
+    "torch": 1,
+    "ironSword": 1
+   }
+  },
+  "musewonder": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "meal": 1,
+    "meat": 1
+   },
+   "tools": {
+    "axe": 1,
+    "torch": 1,
+    "ironSword": 1
+   }
+  },
+  "astra": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "meal": 1,
+    "orchardFruit": 1
+   },
+   "tools": {
+    "axe": 1,
+    "spear": 1,
+    "torch": 1
+   }
+  },
+  "dsv41f": {
+   "runs": 5,
+   "foods": {
+    "berries": 5,
+    "leafyGreens": 1,
+    "meal": 3,
+    "meat": 2,
+    "orchardFruit": 4
+   },
+   "tools": {
+    "axe": 5,
+    "ironSword": 1,
+    "spear": 3,
+    "torch": 2
+   }
+  },
+  "mimo26p": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "meal": 1,
+    "orchardFruit": 1
+   },
+   "tools": {
+    "axe": 1,
+    "torch": 1
+   }
+  },
+  "grok47": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "leafyGreens": 1,
+    "meal": 1,
+    "meat": 1,
+    "orchardFruit": 1
+   },
+   "tools": {
+    "axe": 1,
+    "spear": 1
+   }
+  },
+  "dsv4f": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "leafyGreens": 1,
+    "meal": 1,
+    "orchardFruit": 1
+   },
+   "tools": {
+    "axe": 1,
+    "torch": 1
+   }
+  },
+  "glm53": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "leafyGreens": 1,
+    "meal": 1,
+    "orchardFruit": 1
+   },
+   "tools": {
+    "axe": 1,
+    "spear": 1,
+    "torch": 1
+   }
+  },
+  "kimik31": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "leafyGreens": 1
+   },
+   "tools": {
+    "axe": 1
+   }
+  },
+  "kimik3": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "orchardFruit": 1
+   },
+   "tools": {
+    "axe": 1,
+    "spear": 1,
+    "ironSword": 1,
+    "starBlade": 1
+   }
+  },
+  "gem38f": {
+   "runs": 1,
+   "foods": {
+    "berries": 1,
+    "orchardFruit": 1
+   },
+   "tools": {
+    "axe": 1,
+    "torch": 1
+   }
+  }
+ }
+}

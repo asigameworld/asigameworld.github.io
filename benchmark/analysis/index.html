@@ -11,6 +11,341 @@
   <link rel="stylesheet" href="/style.css?v=8">
   <link rel="stylesheet" href="/theme.css?v=41">
   <link rel="stylesheet" href="/benchmark/hero.css?v=4">
+  <style>
+    .self-panel { margin-top: 16px; }
+    .self-leg-line { display: inline-block; width: 16px; height: 0; border-top: 2.5px solid #c92a2a; vertical-align: middle; margin-right: 5px; }
+    .self-leg-line.is-dash { border-top-style: dashed; border-top-width: 2px; }
+    .self-leg-line.is-dot { border-top-style: dotted; border-top-width: 2.2px; }
+    .self-leg-swatch { display: inline-block; width: 11px; height: 11px; border-radius: 3px; vertical-align: -1.5px; margin-right: 5px; }
+    .self-hover-bar {
+      margin-top: 10px; padding: 9px 12px; border-radius: 8px;
+      background: #f6f9f7; border: 1px solid #e2ebe5;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;
+      font-size: 12.5px; color: #314239; line-height: 1.5;
+    }
+    .self-hover-bar strong { color: #18362b; }
+    .self-hover-sep { color: #b9c8c0; }
+    .cog-board { display: flex; flex-direction: column; gap: 20px; }
+    .cog-card {
+      background: #fcfbf8; border: 1px solid #e6e1d6; border-radius: 14px;
+      padding: 20px 18px 18px;
+      box-shadow: 0 2px 12px rgba(45, 38, 28, .035);
+    }
+    .cog-card-head {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 10px 16px; padding-bottom: 14px; margin-bottom: 6px;
+      border-bottom: 1px solid #ece7dc;
+    }
+    .cog-card-title { display: flex; align-items: baseline; gap: 10px; }
+    .cog-card-head h3 { margin: 0; font-size: 16px; font-weight: 700; color: #24332a; }
+    .cog-card-sub { font-size: 12px; color: #857e71; font-variant-numeric: tabular-nums; }
+    .cog-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: 11.5px; color: #5c574d; }
+    .cog-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .cog-legend-sw {
+      display: inline-block; width: 13px; height: 13px; border-radius: 4px; border: 1px solid transparent;
+    }
+    .cog-legend-pips { display: inline-flex; gap: 2px; margin-left: 1px; opacity: .75; }
+    .cog-legend-pips b { width: 4px; height: 4px; border-radius: 50%; background: currentColor; display: inline-block; }
+    .cog-wrap { overflow-x: auto; }
+    .cog-table {
+      border-collapse: separate; border-spacing: 0; width: 100%; table-layout: fixed;
+      font-size: 12px; color: #2b332e; background: transparent;
+    }
+    .cog-table.is-tools { min-width: 960px; }
+    .cog-table.is-foods { min-width: 820px; }
+    .cog-table thead,
+    .cog-table thead tr,
+    .cog-table thead th,
+    .cog-table tbody tr,
+    .cog-table tbody th,
+    .cog-table tbody td { background: transparent; border-bottom: 0; }
+    .cog-table col.col-name { width: 186px; }
+    .cog-table col.col-sum { width: 60px; }
+    .cog-name {
+      position: sticky; left: 0; z-index: 2; background: #fcfbf8 !important;
+      width: 186px !important; min-width: 186px; max-width: 186px;
+      padding: 5px 8px 5px 2px !important;
+      text-align: left; font-weight: 600; white-space: nowrap;
+    }
+    .cog-table thead .cog-name {
+      z-index: 3; vertical-align: bottom; padding-bottom: 10px !important;
+      border-bottom: 1px solid #e8e3d8 !important;
+      font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      color: #8c8578;
+    }
+    .cog-name-in { display: flex; align-items: center; gap: 8px; }
+    .cog-rank {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10.5px; font-weight: 600; color: #9a9284; width: 18px; flex-shrink: 0;
+    }
+    .cog-name .model-icon {
+      width: 20px; height: 20px; border-radius: 5px; font-size: 9px !important;
+      border-color: #e4dfd4;
+    }
+    .cog-name .model-icon img,
+    .cog-name .model-icon svg { width: 13px; height: 13px; }
+    .cog-name-txt { font-size: 12.2px; font-weight: 620; color: #26312a; letter-spacing: -.01em; }
+    .cog-item.has-sep, .cog-cell.has-sep { border-left: 1px dashed #e5dfd2; }
+    .cog-item {
+      padding: 8px 1px 10px !important; text-align: center; color: #3a3832;
+      vertical-align: bottom; border-bottom: 1px solid #e8e3d8 !important;
+    }
+    .cog-ico {
+      width: 38px; height: 38px; margin: 0 auto 4px;
+      display: grid; place-items: center;
+    }
+    .cog-ico img {
+      display: block; width: 32px; height: 32px; image-rendering: pixelated;
+      filter: drop-shadow(0 1px 1px rgba(42, 35, 24, .12));
+    }
+    .cog-pips {
+      display: flex; justify-content: center; align-items: center; gap: 3px;
+      height: 7px; margin: 0 auto 4px;
+    }
+    .cog-pips i {
+      width: 4.5px; height: 4.5px; border-radius: 1px; transform: rotate(45deg);
+      background: #87ab97;
+    }
+    .cog-pips.is-t2 i, .cog-pips.is-cook i { background: #3f765c; }
+    .cog-pips.is-t3 i { background: #1e4635; }
+    .cog-lbl {
+      display: block; font-size: 9.2px; font-weight: 600; line-height: 1.22;
+      letter-spacing: -.02em; color: #4a463e; min-height: 24px;
+    }
+    .cog-rate {
+      display: block; margin-top: 4px;
+    }
+    .cog-pill.is-head { padding: 1.5px 6px; font-size: 9.8px; }
+    .cog-pill.is-head small { font-size: 9px; }
+    .cog-cell {
+      padding: 4px 3px !important; text-align: center; vertical-align: middle;
+      border-bottom: 1px solid #f2eee6 !important;
+    }
+    .cog-table tbody tr:last-child .cog-cell,
+    .cog-table tbody tr:last-child .cog-name,
+    .cog-table tbody tr:last-child .cog-sum { border-bottom: 0 !important; }
+    .cog-mark {
+      position: relative; display: block; height: 22px; border-radius: 5px;
+      background: transparent; border: 1px solid transparent;
+      transition: transform 120ms, background 120ms;
+    }
+    .cog-mark::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 3.5px; height: 3.5px; margin: -1.75px 0 0 -1.75px;
+      border-radius: 50%; background: #d8d1c3;
+    }
+    .cog-mark.is-on::after { display: none; }
+    .cog-mark.is-t1, .cog-mark.is-gath { background: #87ab97; border-color: #749a85; }
+    .cog-mark.is-t2, .cog-mark.is-cook { background: #3f765c; border-color: #33634c; }
+    .cog-mark.is-t3 { background: #1e4635; border-color: #153427; }
+    .cog-sum {
+      width: 60px !important; min-width: 60px; padding: 4px 2px 4px 6px !important;
+      text-align: right; vertical-align: middle; white-space: nowrap;
+      border-bottom: 1px solid #f2eee6 !important;
+    }
+    .cog-table thead .cog-sum {
+      vertical-align: bottom; padding-bottom: 10px !important;
+      border-bottom: 1px solid #e8e3d8 !important;
+      font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      color: #8c8578;
+    }
+    .cog-pill {
+      display: inline-flex; align-items: baseline; justify-content: flex-end; gap: 1px;
+      padding: 2px 8px; border-radius: 999px;
+      background: #f2eee5; border: 1px solid #e4decfe6;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px; font-weight: 700; color: #26352c;
+    }
+    .cog-pill.is-zero { color: #a39b8c; background: #f6f3ec; }
+    .cog-pill small { font-size: 10px; font-weight: 500; color: #8c8578; }
+    .cog-table tbody tr:hover td,
+    .cog-table tbody tr:hover th { background: #f5f2ea !important; }
+    .cog-table tbody tr:hover .cog-mark:not(.is-on)::after { background: #b5ad9d; transform: scale(1.25); }
+    .cog-table tbody tr:hover .cog-mark.is-on { transform: scaleY(1.06); }
+    .vy-board {
+      display: flex; flex-direction: column; gap: 28px;
+      width: min(1240px, calc(100vw - 40px));
+      margin-left: 50%; transform: translateX(-50%);
+    }
+    .vy-card {
+      background: #fcfbf8; border: 1px solid #e6e1d6; border-radius: 16px;
+      padding: 22px 24px 18px;
+      box-shadow: 0 2px 14px rgba(45, 38, 28, .04);
+    }
+    .vy-head {
+      display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between;
+      gap: 8px 16px; padding-bottom: 12px; margin-bottom: 10px;
+      border-bottom: 1px solid #ece7dc;
+    }
+    .vy-head h3 {
+      margin: 0; font-size: 17.5px; font-weight: 700; color: #1f2e25; letter-spacing: -.01em;
+    }
+    .vy-sub {
+      margin: 4px 0 0; font-size: 12.8px; color: #7c7568; line-height: 1.45;
+    }
+    .vy-key-row {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
+      font-size: 11.5px; color: #6c6559; padding-top: 2px;
+    }
+    .vy-key-item { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+    .vy-key-Recover { color: #1f5c43; font-weight: 650; }
+    .vy-key-Stall { color: #b83b2a; font-weight: 650; }
+    .vy-tree-bar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+      padding: 8px 14px; margin: 0 0 10px;
+      background: #f6f3eb; border: 1px solid #eae4d7; border-radius: 9px;
+    }
+    .vy-tree-lbl {
+      font-size: 11.5px; font-weight: 700; color: #24332a; letter-spacing: .01em;
+      padding-right: 10px; border-right: 1px solid #dfd8c8; white-space: nowrap;
+    }
+    .vy-tree-steps {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
+    }
+    .vy-tree-step {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11.5px; font-weight: 600; color: #464138; white-space: nowrap;
+    }
+    .vy-tree-icons { display: inline-flex; align-items: center; gap: 3px; }
+    .vy-tree-icons img {
+      width: 27px; height: 27px; image-rendering: pixelated; image-rendering: crisp-edges;
+      filter: drop-shadow(0 1px 1px rgba(42, 35, 24, .12));
+      display: block;
+    }
+    .vy-tree-arr {
+      color: #8c8578; font-size: 11.5px; font-weight: 700; line-height: 1; user-select: none;
+    }
+    .vy-fig-wrap { position: relative; width: 100%; overflow-x: auto; }
+    .vy-svg {
+      display: block; width: 100%; min-width: 780px; height: auto;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      user-select: none;
+    }
+    .vy-svg image {
+      image-rendering: pixelated; image-rendering: crisp-edges;
+      filter: drop-shadow(0 1px 1.5px rgba(36, 30, 20, .18));
+    }
+    .vy-bg-line { cursor: pointer; transition: stroke .14s ease, stroke-width .14s ease, opacity .16s ease; }
+    .vy-bg-line:hover { stroke: #988f7e !important; stroke-width: 2.2px !important; }
+    .vy-m-layer, .vy-sp, .vy-callout { transition: none; }
+    .vy-active-curve, .vy-active-halo { transition: stroke-width .12s ease, stroke-opacity .12s ease; }
+    .vy-hit-curve { cursor: pointer; }
+    .vy-card.has-focus .vy-bg-line { opacity: .3; }
+    .vy-card.has-focus .vy-m-layer:not(.is-focus),
+    .vy-card.has-focus .vy-sp:not(.is-focus),
+    .vy-card.has-focus .vy-callout:not(.is-focus) { opacity: .14; }
+    .vy-card.has-focus .vy-m-layer.is-focus .vy-active-curve { stroke-width: 3.4px !important; }
+    .vy-card.has-focus .vy-m-layer.is-focus .vy-active-halo { stroke-width: 11px !important; stroke-opacity: .22 !important; }
+    .vy-card.has-focus .vy-leg-btn:not(.is-focus) { opacity: .42; }
+    .vy-card.has-focus .vy-leg-btn.is-focus {
+      border-color: #24332a; background: #f3efe4;
+      box-shadow: 0 1px 6px rgba(36, 51, 42, .12);
+    }
+    .vy-card.has-focus .vy-diag-item:not(.is-focus) { opacity: .3; }
+    .vy-card.has-focus .vy-diag-item.is-focus {
+      background: #fcfbf8; border-radius: 7px;
+      box-shadow: 0 0 0 1px #dcd5c6;
+    }
+    .vy-diag-item { transition: opacity .15s ease, background .15s ease; padding: 3px 6px; margin: -3px -6px; cursor: pointer; }
+    .vy-run-bar {
+      display: inline-flex; align-items: center; gap: 3px;
+      margin-left: 4px; padding: 2px 3px; border-radius: 999px;
+      background: #f2eee5; border: 1px solid #e3ddd0;
+    }
+    .vy-run-lbl {
+      font-size: 10.5px; font-weight: 650; color: #746d60; padding: 0 5px 0 6px;
+    }
+    .vy-run-btn {
+      appearance: none; border: 0; background: transparent; cursor: pointer;
+      padding: 2px 7px; border-radius: 999px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10.5px; font-weight: 700; color: #746d60;
+      transition: background .12s ease, color .12s ease;
+    }
+    .vy-run-btn:hover { color: #1f2e25; }
+    .vy-run-btn[aria-pressed="true"] {
+      background: #24332a; color: #fcfbf8;
+    }
+    .vy-tip {
+      position: absolute; z-index: 8; pointer-events: none;
+      max-width: 300px; padding: 8px 11px; border-radius: 8px;
+      background: rgba(31, 41, 35, .94); color: #fcfbf8;
+      font-size: 12px; line-height: 1.48;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .16);
+    }
+    .vy-tip[hidden] { display: none; }
+    .vy-legend {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+      padding-top: 12px; margin-top: 6px; border-top: 1px solid #f0ebe0;
+    }
+    .vy-leg-btn {
+      appearance: none; border: 1px solid #e3ddd0; background: #fffefb;
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 4.5px 11px 4.5px 9px; border-radius: 999px; cursor: pointer;
+      font: inherit; font-size: 12px; font-weight: 620; color: #243129;
+      transition: border-color .14s ease, background .14s ease, opacity .14s ease;
+    }
+    .vy-leg-btn:hover { border-color: #c5bdb0; background: #f7f4ec; }
+    .vy-leg-sw { width: 16px; height: 2.8px; border-radius: 2px; flex-shrink: 0; }
+    .vy-leg-btn .model-icon {
+      width: 18px; height: 18px; border-radius: 4px; font-size: 8px !important;
+      border-color: #e4dfd4; flex-shrink: 0;
+    }
+    .vy-leg-btn .model-icon img,
+    .vy-leg-btn .model-icon svg { width: 12px; height: 12px; }
+    .vy-leg-val {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px; font-weight: 700; color: #6d6659;
+    }
+    .vy-diag-list {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 7px 14px; margin-top: 11px; padding: 11px 13px;
+      background: #f6f3eb; border: 1px solid #e8e2d5; border-radius: 10px;
+    }
+    .vy-diag-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 11.8px; line-height: 1.48; color: #3c3830;
+    }
+    .vy-diag-dot {
+      width: 8px; height: 8px; border-radius: 999px; flex-shrink: 0; margin-top: 5px;
+    }
+    .vy-diag-body { min-width: 0; }
+    .vy-diag-name { font-weight: 700; color: #1f2e25; margin-right: 5px; }
+    .vy-diag-tag {
+      display: inline-block; padding: 0 6px; margin-right: 5px; border-radius: 999px;
+      font-size: 10.2px; font-weight: 700; line-height: 1.5; vertical-align: 0.5px;
+    }
+    .vy-diag-tag.is-ok { background: #dff0e6; color: #1d533c; border: 1px solid #bddac8; }
+    .vy-diag-tag.is-fail { background: #fae7e0; color: #9c381c; border: 1px solid #e9bdb0; }
+    .vy-diag-tag.is-calm { background: #ede8dc; color: #5d574c; border: 1px solid #ded7c7; }
+    .vy-diag-tag.is-skip { background: #f2efe7; color: #8c8578; border: 1px solid #e5dfd2; }
+    .vy-diag-txt code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10.6px; font-weight: 650; padding: 0.5px 4px; border-radius: 3px;
+      background: #fcfbf8; border: 1px solid #e2dccf; color: #7a3420;
+    }
+    .vy-diag-item.is-ok .vy-diag-txt code { color: #21543e; }
+    .vy-bench-bar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 5px 6px;
+      margin-top: 8px; padding-top: 7px; border-top: 1px dashed #ede8dc;
+    }
+    .vy-bench-lbl {
+      font-size: 10.8px; font-weight: 600; color: #8c8578; margin-right: 4px;
+    }
+    .vy-pill-btn {
+      appearance: none; border: 1px solid #e9e4d8; background: #f6f3ec;
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 999px; cursor: pointer;
+      font: inherit; font-size: 10.8px; font-weight: 550; color: #756e61;
+      transition: background .12s ease, color .12s ease, border-color .12s ease;
+    }
+    .vy-pill-btn:hover { background: #ede8dc; color: #26312a; border-color: #d6cfc0; }
+    .vy-reset-btn {
+      appearance: none; border: 0; background: transparent; cursor: pointer;
+      margin-left: auto; padding: 2px 6px; font: inherit;
+      font-size: 10.8px; font-weight: 650; color: #2f6a52; text-decoration: underline;
+    }
+  </style>
 </head>
 <body class="benchmark-page">
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -40,6 +375,9 @@
 
     <div class="analysis-tabs" role="tablist" aria-label="Analysis topics">
       <button type="button" class="analysis-tab" role="tab" data-pane="profiles" aria-selected="true" data-i18n="tab-profiles">Capability Profiles</button>
+      <button type="button" class="analysis-tab" role="tab" data-pane="cognition" aria-selected="false" data-i18n="tab-cognition">Cognition</button>
+      <button type="button" class="analysis-tab" role="tab" data-pane="planning" aria-selected="false" data-i18n="tab-planning">Planning, Execution &amp; Learning</button>
+      <button type="button" class="analysis-tab" role="tab" data-pane="self-management" aria-selected="false" data-i18n="tab-self">Self-management</button>
       <button type="button" class="analysis-tab" role="tab" data-pane="recovery" aria-selected="false" data-i18n="tab-recovery">Error Recovery</button>
       <button type="button" class="analysis-tab" role="tab" data-pane="case-study" aria-selected="false" data-i18n="tab-case">Case Study: NPC Bug</button>
     </div>
@@ -85,6 +423,40 @@
       </details>
     </section>
 <!-- PROFILES:END -->
+
+    <section class="analysis-pane" id="pane-cognition" data-pane="cognition">
+      <div class="pane-intro">
+        <h2 data-i18n="cog-head">Cognition</h2>
+        <p data-i18n="cog-lead">Each column is one tool or one food from the game. A filled tile means the model made or obtained that tool, or ate or held that food. Diamond pips beneath each icon mark item tier or food stage, shaded from light sage to deep pine.</p>
+      </div>
+      <div id="cog-board" class="cog-board"></div>
+      <p class="hc-meta-note" data-i18n="cog-cap">Numbers under each item header count how many of the 15 frontier models obtained it. Right-hand pills summarize each model's total.</p>
+    </section>
+
+    <section class="analysis-pane" id="pane-planning" data-pane="planning">
+      <div class="pane-intro">
+        <h2 data-i18n="plan-head">Planning, Execution &amp; Learning</h2>
+        <p data-i18n="plan-lead">Four 7-hour progression curves across crafting, building, food, and combat. Stage bars above each chart outline the domain's progression route, pixel sprites float beside first-time unlocks along the climb, upward recoveries after plateaus show error-driven learning, and flatlines after ✕ mark models that stalled upon failure.</p>
+      </div>
+      <div id="plan-board" class="vy-board"></div>
+      <p class="hc-meta-note" data-i18n="plan-cap">All 15 frontier trajectories are plotted as single-run step curves (5 highlighted by default, gray lines in back). Hover any curve or legend pill to spotlight it and dim the others; click to add or hide models. For deepseek-v4.1-flash, switch R1–R5 to inspect each of its five single runs.</p>
+    </section>
+
+    <section class="analysis-pane" id="pane-self" data-pane="self-management">
+      <div class="pane-intro">
+        <h2 data-i18n="self-head">Self-management</h2>
+        <p data-i18n="self-lead">As models adapt to the game environment and continuously revise their scripts to play, they also need to keep their character's condition in check. Each column represents one hour. The stacked bar shows how actions were split across building, combat, crafting, and exploration, while the curves plot hourly averages for health, fullness, and stamina. When a curve drops while the bar stays active, it signals state mismanagement, as the script kept pushing tasks without looking after itself.</p>
+      </div>
+      <div class="rej-slider-shell">
+        <div class="rej-slider-bar">
+          <button type="button" class="rej-nav-btn" id="self-prev" aria-label="Previous model">‹</button>
+          <div class="agent-roster rej-roster-strip" id="self-roster" role="listbox" aria-label="Models"></div>
+          <button type="button" class="rej-nav-btn" id="self-next" aria-label="Next model">›</button>
+        </div>
+        <article class="model-hero-card" id="self-hero-card" aria-live="polite"></article>
+      </div>
+      <p class="hc-meta-note" data-i18n="self-cap">Pick a model, then hover or tap any hour to inspect exact physiology averages and task counts.</p>
+    </section>
 
     <section class="analysis-pane" id="pane-recovery" data-pane="recovery">
       <div class="pane-intro">
@@ -560,7 +932,7 @@ my pos [[13, [232, 0, 104]]]</div>
     </section>
   </main>
   <footer><a class="brand" href="/" data-i18n="footer-brand">ASI Game World</a></footer>
-  <script src="/i18n.js?v=37"></script>
+  <script src="/i18n.js?v=71"></script>
           <script>
     const tabs = [...document.querySelectorAll('.analysis-tab')];
     const panes = [...document.querySelectorAll('.analysis-pane')];
@@ -587,6 +959,6 @@ my pos [[13, [232, 0, 104]]]</div>
       ioCols.forEach(c => c.classList.toggle('is-hidden', tier !== 'all' && c.dataset.tier !== tier));
     }));
   </script>
-  <script src="/model-cards.js?v=26"></script>
+  <script src="/model-cards.js?v=55"></script>
 </body>
 </html>
