@@ -8,18 +8,18 @@
   <link rel="canonical" href="https://asigameworld.github.io/benchmark/">
   <title>ASIWorld — A Persistent Survival Sandbox</title>
   <link rel="icon" href="/assets/favicon.svg?v=3" type="image/svg+xml">
-  <link rel="stylesheet" href="/style.css?v=8">
-  <link rel="stylesheet" href="/theme.css?v=41">
-  <link rel="stylesheet" href="/benchmark/hero.css?v=4">
+  <link rel="stylesheet" href="/style.css?v=12">
+  <link rel="stylesheet" href="/theme.css?v=46">
+  <link rel="stylesheet" href="/benchmark/hero.css?v=7">
   <link rel="preload" as="image" href="/assets/agent-journeys-light.jpg">
   <style>
   .capability-table thead th { vertical-align: top; }
-  .capability-table thead tr:first-child > th { padding-top: 16px; padding-bottom: 14px; border-bottom: 1px solid #edf0ed; }
-  .capability-table thead tr:first-child > th:first-child { width: 22%; text-align: left; vertical-align: middle; background: #f8faf8; }
-  .capability-table thead tr:first-child > th:nth-child(2) { width: 12%; background: #f8faf8; text-align: center; }
-  .capability-table thead tr:first-child > th:nth-child(3) { width: 25%; background: #f1f6f3; text-align: center; }
-  .capability-table thead tr:first-child > th:nth-child(4) { width: 17%; background: #f8faf8; text-align: center; }
-  .capability-table thead tr:first-child > th:last-child { width: 24%; background: #f5f3f8; text-align: center; }
+  .capability-table thead tr:first-child > th { padding-top: 16px; padding-bottom: 14px; border-bottom: 1px solid color-mix(in srgb, #172e28 14%, transparent); background: #eaf4f0; }
+  .capability-table thead tr:first-child > th:first-child { width: 22%; text-align: left; vertical-align: middle; background: #eaf4f0; }
+  .capability-table thead tr:first-child > th:nth-child(2) { width: 12%; background: #eaf4f0; text-align: center; }
+  .capability-table thead tr:first-child > th:nth-child(3) { width: 25%; background: #eaf4f0; text-align: center; }
+  .capability-table thead tr:first-child > th:nth-child(4) { width: 17%; background: #eaf4f0; text-align: center; }
+  .capability-table thead tr:first-child > th:last-child { width: 24%; background: #eaf4f0; text-align: center; }
   .capability-table thead .tier-labels { margin-top: 8px; }
   .score-meter { width: 64px; height: 10px; background: #e9efec; }
   .score-meter > span { display: block; height: 100%; background: #276451; }
@@ -43,12 +43,14 @@
 <body class="benchmark-page">
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="/" aria-label="Back to ASI Game World homepage" title="Back to project home" data-i18n-aria-label="brand-back" data-i18n-title="brand-title"><img class="new-brand-icon" src="/assets/world-emblem.svg" width="36" height="40" alt=""><span class="brand-name">ASI<span>GAME WORLD</span></span></a>
-    <nav aria-label="Main navigation"><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang-set="en" aria-pressed="true">EN</button><button type="button" data-lang-set="zh">中文</button></div><a class="nav-top" href="https://arxiv.org/abs/2610.14807" target="_blank" rel="noopener" data-i18n="nav-paper">Paper</a><a class="nav-top" href="#results" data-i18n="nav-results">Results</a><a class="nav-top" href="#overview" data-i18n="nav-overview">Overview</a><a class="nav-top" href="#tasks" data-i18n="nav-tasks">Tasks</a><div class="nav-dropdown"><a class="nav-top nav-dropdown-trigger" href="#evaluation" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav-eval">Evaluation</span><span class="nav-caret" aria-hidden="true">▾</span></a><div class="nav-dropdown-menu" role="menu"><a class="nav-dropdown-item" href="#evaluation" role="menuitem"><strong data-i18n="nav-eval-graphs">Evaluation Graphs</strong><span data-i18n="nav-eval-graphs-desc">Cross-dimensional 6×4 heatmaps &amp; action composition charts</span></a><a class="nav-dropdown-item" href="/benchmark/analysis/" role="menuitem"><strong data-i18n="nav-eval-analysis">Behavioral Analysis</strong><span data-i18n="nav-eval-analysis-desc">Per-model radar profiles, error recovery &amp; NPC-lie verbatim traces</span></a></div></div></nav>
+    <a class="brand" href="/" aria-label="Back to ASI Game World homepage" title="Back to project home" data-i18n-aria-label="brand-back" data-i18n-title="brand-title"><img class="new-brand-icon" src="/assets/world-emblem.svg" width="29" height="32" alt=""><span class="brand-name">ASI<span>GAME WORLD</span></span></a>
+    <nav aria-label="Main navigation"><a class="nav-top" href="https://arxiv.org/abs/2610.14807" target="_blank" rel="noopener" data-i18n="nav-paper">Paper</a><a class="nav-top" href="#results" data-i18n="nav-results">Results</a><a class="nav-top" href="#overview" data-i18n="nav-overview">Overview</a><a class="nav-top" href="#tasks" data-i18n="nav-tasks">Tasks</a><div class="nav-dropdown"><a class="nav-top nav-dropdown-trigger" href="#evaluation" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav-eval">Evaluation</span><span class="nav-caret" aria-hidden="true">▾</span></a><div class="nav-dropdown-menu" role="menu"><a class="nav-dropdown-item" href="#evaluation" role="menuitem"><strong data-i18n="nav-eval-graphs">Evaluation Graphs</strong><span data-i18n="nav-eval-graphs-desc">Cross-dimensional 6×4 heatmaps &amp; action composition charts</span></a><a class="nav-dropdown-item" href="/benchmark/analysis/" role="menuitem"><strong data-i18n="nav-eval-analysis">Behavioral Analysis</strong><span data-i18n="nav-eval-analysis-desc">Per-model radar profiles, error recovery &amp; NPC-lie verbatim traces</span></a></div></div></nav>
+    <div class="portal-nav-actions"><select class="lang-switch" aria-label="Language"><option value="en">English</option><option value="zh">中文</option></select><a class="button primary nav-play" href="https://agentworld.games/" target="_blank" rel="noopener"><span data-i18n="pill-play">Play ASIWorld</span> <span aria-hidden="true">↗</span></a></div>
   </header>
   <main id="main">
     <section class="hero journey-hero" id="paper" aria-labelledby="title">
       <div class="journey-copy">
+      <span class="eyebrow" data-i18n="hero-eyebrow">Autonomous agent benchmark</span>
       <h1 id="title"><span class="project-name">ASIWorld</span><span class="paper-title" data-i18n="paper-title" data-i18n-html>Benchmarking Autonomous Agents<br>in a Persistent Survival Sandbox</span></h1>
       <p class="authors">Jianfeng Lin<sup>1,2,*</sup> <span>Runze Wang<sup>1,*</sup></span> <span>Haorong Hong<sup>1,*</sup></span> <span>Ken Li<sup>1,3</sup></span><br>Wenbo Hu<sup>1,3</sup> <span>Yuxuan Xie<sup>1</sup></span> <span>Zeno Zeng<sup>4</sup></span> <span>Zhongyuan Liu<sup>1,†</sup></span></p>
       <div class="affiliations"><span data-i18n="aff-1" data-i18n-html><sup>1</sup> Lightspeed Studios, Tencent</span><span data-i18n="aff-2" data-i18n-html><sup>2</sup> HKUST</span><span data-i18n="aff-3" data-i18n-html><sup>3</sup> Nanjing University</span><span data-i18n="aff-4" data-i18n-html><sup>4</sup> Hunyuan Team, Tencent</span></div>
@@ -68,6 +70,7 @@
     </section>
     <section class="leaderboard section" aria-labelledby="leaderboard-title">
       <div class="results" id="results">
+        <span class="eyebrow" data-i18n="cap-eyebrow">Leaderboard</span>
         <h2 id="leaderboard-title" data-i18n="cap-title">Agent capabilities</h2>
         <p class="results-scope" data-i18n="cap-scope">Common Claude Code harness · 7-hour open-world evaluation · frontier models and a separate small-model track</p>
         <p class="ability-headline" data-i18n="cap-head" data-i18n-html><strong>Cross-dimensional</strong> progression across 4 gameplay domains &amp; 6 agent capabilities.</p>
@@ -114,16 +117,16 @@
       </div>
     </section>
     <section class="overview section" aria-labelledby="overview-title">
-      <div class="section-heading centered" id="overview"><h2 id="overview-title" data-i18n="overview-title">Overview</h2></div>
+      <div class="section-heading" id="overview"><span class="eyebrow" data-i18n="overview-eyebrow">The sandbox</span><h2 id="overview-title" data-i18n="overview-title">Overview</h2></div>
       <p class="abstract" data-i18n="abstract" data-i18n-html><strong>ASIWorld</strong> evaluates autonomous agents in a persistent survival sandbox. Agents coordinate survival, combat, building, and crafting through direct actions or maintainable programmatic scripts, while earlier decisions shape later opportunities. Evaluation intersects four gameplay domains with six core agent capabilities alongside execution trajectories and activity allocation.</p>
       <figure class="wide-figure overview-figure"><a href="/assets/overview.webp" target="_blank" rel="noopener" aria-label="Open the ASIWorld overview figure at full size" data-i18n-aria-label="overview-aria"><img src="/assets/overview.webp" width="1860" height="846" alt="ASIWorld overview: a persistent survival world, an agent harness with asynchronous program execution, and evaluation using execution records and world state." data-i18n-alt="overview-alt" loading="lazy"></a><figcaption data-i18n="overview-cap">ASIWorld connects persistent world state, asynchronous agent execution, and cross-dimensional evaluation.</figcaption></figure>
     </section>
     <section class="tasks section" id="tasks" aria-labelledby="tasks-title">
-      <div class="section-heading centered"><h2 id="tasks-title" data-i18n="tasks-title">Benchmark Tasks</h2><p data-i18n="tasks-lead">Four interdependent gameplay domains test sustained progression through preparation, script iteration, and evolving world state.</p></div>
+      <div class="section-heading"><span class="eyebrow" data-i18n="tasks-eyebrow">What we measure</span><h2 id="tasks-title" data-i18n="tasks-title">Benchmark Tasks</h2><p data-i18n="tasks-lead">Four interdependent gameplay domains test sustained progression through preparation, script iteration, and evolving world state.</p></div>
       <figure class="wide-figure"><a href="/assets/tasks.webp" target="_blank" rel="noopener" aria-label="Open the benchmark task figure at full size" data-i18n-aria-label="tasks-aria"><img src="/assets/tasks.webp" width="1774" height="887" alt="Gameplay progression across survival, combat, building, and crafting." data-i18n-alt="tasks-alt" loading="lazy"></a><figcaption data-i18n="tasks-cap">Preparation, resource management, and skill acquisition connect progression across the four interdependent gameplay domains.</figcaption></figure>
     </section>
     <section class="evaluation section" id="evaluation" aria-labelledby="evaluation-title">
-      <div class="section-heading centered"><h2 id="evaluation-title" data-i18n="eval-title">Evaluation</h2><p data-i18n="eval-lead">Assessing domain progression, capability-level bottlenecks, and activity allocation across 15 frontier models and Qwen3.5-27B. Additional gameplay mechanics and world features are actively under development, and the evaluation leaderboard will be continuously updated.</p></div>
+      <div class="section-heading"><span class="eyebrow" data-i18n="eval-eyebrow">Diagnostics</span><h2 id="evaluation-title" data-i18n="eval-title">Evaluation</h2><p data-i18n="eval-lead">Assessing domain progression, capability-level bottlenecks, and activity allocation across 15 frontier models and Qwen3.5-27B. Additional gameplay mechanics and world features are actively under development, and the evaluation leaderboard will be continuously updated.</p></div>
       <div class="results evaluation-details">
         <figure class="wide-figure result-figure" id="eval-heatmap">
           <h3 data-i18n="heat-title">Cross-dimensional evaluation</h3>
@@ -215,7 +218,7 @@
     </section>
   </main>
   <footer><a class="brand" href="/" data-i18n="footer-brand">ASI Game World</a></footer>
-  <script src="/i18n.js?v=71"></script>
+  <script src="/i18n.js?v=73"></script>
   <script>
     const sectionLinks = [...document.querySelectorAll('nav a.nav-top[href^="#"]')];
     const targets = sectionLinks.map(link => document.querySelector(link.getAttribute('href')));

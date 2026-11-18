@@ -8,9 +8,9 @@
   <link rel="canonical" href="https://asigameworld.github.io/benchmark/analysis/">
   <title>ASIWorld — Behavioral Analysis</title>
   <link rel="icon" href="/assets/favicon.svg?v=3" type="image/svg+xml">
-  <link rel="stylesheet" href="/style.css?v=8">
-  <link rel="stylesheet" href="/theme.css?v=41">
-  <link rel="stylesheet" href="/benchmark/hero.css?v=4">
+  <link rel="stylesheet" href="/style.css?v=12">
+  <link rel="stylesheet" href="/theme.css?v=46">
+  <link rel="stylesheet" href="/benchmark/hero.css?v=7">
   <style>
     .self-panel { margin-top: 16px; }
     .self-scorebox-trio {
@@ -37,26 +37,27 @@
     .self-leg-line.is-dot { border-top-style: dotted; border-top-width: 2.2px; }
     .self-leg-swatch { display: inline-block; width: 11px; height: 11px; border-radius: 3px; vertical-align: -1.5px; margin-right: 5px; }
     .self-hover-bar {
-      margin-top: 10px; padding: 9px 12px; border-radius: 8px;
-      background: #f6f9f7; border: 1px solid #e2ebe5;
+      margin-top: 10px; padding: 9px 12px; border-radius: 0;
+      background: #eaf4f0; border: 1px solid color-mix(in srgb, #172e28 16%, transparent);
       display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;
-      font-size: 12.5px; color: #314239; line-height: 1.5;
+      font-size: 12.5px; color: #172e28; line-height: 1.5;
     }
-    .self-hover-bar strong { color: #18362b; }
+    .self-hover-bar strong { color: #087b55; }
     .self-hover-sep { color: #b9c8c0; }
     .cog-board { display: flex; flex-direction: column; gap: 20px; }
     .cog-card {
-      background: #fcfbf8; border: 1px solid #e6e1d6; border-radius: 14px;
+      position: relative;
+      background: rgb(255 255 255 / 86%); border: 1px solid color-mix(in srgb, #172e28 16%, transparent); border-radius: 0;
       padding: 20px 18px 18px;
-      box-shadow: 0 2px 12px rgba(45, 38, 28, .035);
+      box-shadow: inset 0 1px 0 rgb(255 255 255 / 55%), 0 8px 20px -14px rgb(23 46 40 / 32%);
     }
     .cog-card-head {
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
       gap: 10px 16px; padding-bottom: 14px; margin-bottom: 6px;
-      border-bottom: 1px solid #ece7dc;
+      border-bottom: 1px solid color-mix(in srgb, #172e28 14%, transparent);
     }
     .cog-card-title { display: flex; align-items: baseline; gap: 10px; }
-    .cog-card-head h3 { margin: 0; font-size: 16px; font-weight: 700; color: #24332a; }
+    .cog-card-head h3 { margin: 0; font-size: 16px; font-weight: 650; color: #172e28; }
     .cog-card-sub { font-size: 12px; color: #857e71; font-variant-numeric: tabular-nums; }
     .cog-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: 11.5px; color: #5c574d; }
     .cog-legend-item { display: inline-flex; align-items: center; gap: 6px; }
@@ -81,7 +82,7 @@
     .cog-table col.col-name { width: 186px; }
     .cog-table col.col-sum { width: 60px; }
     .cog-name {
-      position: sticky; left: 0; z-index: 2; background: #fcfbf8 !important;
+      position: sticky; left: 0; z-index: 2; background: #ffffff !important;
       width: 186px !important; min-width: 186px; max-width: 186px;
       padding: 5px 8px 5px 2px !important;
       text-align: left; font-weight: 600; white-space: nowrap;
@@ -187,17 +188,18 @@
       margin-left: 50%; transform: translateX(-50%);
     }
     .vy-card {
-      background: #fcfbf8; border: 1px solid #e6e1d6; border-radius: 16px;
+      position: relative;
+      background: rgb(255 255 255 / 86%); border: 1px solid color-mix(in srgb, #172e28 16%, transparent); border-radius: 0;
       padding: 22px 24px 18px;
-      box-shadow: 0 2px 14px rgba(45, 38, 28, .04);
+      box-shadow: inset 0 1px 0 rgb(255 255 255 / 55%), 0 8px 20px -14px rgb(23 46 40 / 32%);
     }
     .vy-head {
       display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between;
       gap: 8px 16px; padding-bottom: 12px; margin-bottom: 10px;
-      border-bottom: 1px solid #ece7dc;
+      border-bottom: 1px solid color-mix(in srgb, #172e28 14%, transparent);
     }
     .vy-head h3 {
-      margin: 0; font-size: 17.5px; font-weight: 700; color: #1f2e25; letter-spacing: -.01em;
+      margin: 0; font-size: 17.5px; font-weight: 650; color: #172e28; letter-spacing: -.01em;
     }
     .vy-sub {
       margin: 4px 0 0; font-size: 12.8px; color: #7c7568; line-height: 1.45;
@@ -212,10 +214,10 @@
     .vy-tree-bar {
       display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
       padding: 8px 14px; margin: 0 0 10px;
-      background: #f6f3eb; border: 1px solid #eae4d7; border-radius: 9px;
+      background: #eaf4f0; border: 1px solid color-mix(in srgb, #172e28 14%, transparent); border-radius: 0;
     }
     .vy-tree-lbl {
-      font-size: 11.5px; font-weight: 700; color: #24332a; letter-spacing: .01em;
+      font-size: 11.5px; font-weight: 700; color: #087b55; letter-spacing: .01em;
       padding-right: 10px; border-right: 1px solid #dfd8c8; white-space: nowrap;
     }
     .vy-tree-steps {
@@ -257,13 +259,13 @@
     .vy-card.has-focus .vy-m-layer.is-focus .vy-active-halo { stroke-width: 11px !important; stroke-opacity: .22 !important; }
     .vy-card.has-focus .vy-leg-btn:not(.is-focus) { opacity: .42; }
     .vy-card.has-focus .vy-leg-btn.is-focus {
-      border-color: #24332a; background: #f3efe4;
-      box-shadow: 0 1px 6px rgba(36, 51, 42, .12);
+      border-color: #18181b; background: #fafafa;
+      box-shadow: 0 1px 4px #0000000a;
     }
     .vy-card.has-focus .vy-diag-item:not(.is-focus) { opacity: .3; }
     .vy-card.has-focus .vy-diag-item.is-focus {
-      background: #fcfbf8; border-radius: 7px;
-      box-shadow: 0 0 0 1px #dcd5c6;
+      background: #ffffff; border-radius: 7px;
+      box-shadow: 0 0 0 1px #e1e1e5;
     }
     .vy-diag-item { transition: opacity .15s ease, background .15s ease; padding: 3px 6px; margin: -3px -6px; cursor: pointer; }
     .vy-run-bar {
@@ -283,12 +285,12 @@
     }
     .vy-run-btn:hover { color: #1f2e25; }
     .vy-run-btn[aria-pressed="true"] {
-      background: #24332a; color: #fcfbf8;
+      background: #5ce4ac; color: #12352a;
     }
     .vy-tip {
       position: absolute; z-index: 8; pointer-events: none;
       max-width: 300px; padding: 8px 11px; border-radius: 8px;
-      background: rgba(31, 41, 35, .94); color: #fcfbf8;
+      background: rgba(24, 24, 27, .94); color: #fafafa;
       font-size: 12px; line-height: 1.48;
       box-shadow: 0 4px 14px rgba(0, 0, 0, .16);
     }
@@ -319,7 +321,7 @@
     .vy-diag-list {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 7px 14px; margin-top: 11px; padding: 11px 13px;
-      background: #f6f3eb; border: 1px solid #e8e2d5; border-radius: 10px;
+      background: #fafafa; border: 1px solid #e1e1e5; border-radius: 13px;
     }
     .vy-diag-item {
       display: flex; align-items: flex-start; gap: 8px;
@@ -362,16 +364,15 @@
     .vy-reset-btn {
       appearance: none; border: 0; background: transparent; cursor: pointer;
       margin-left: auto; padding: 2px 6px; font: inherit;
-      font-size: 10.8px; font-weight: 650; color: #2f6a52; text-decoration: underline;
+      font-size: 10.8px; font-weight: 650; color: #18181b; text-decoration: underline;
     }
   </style>
 </head>
 <body class="benchmark-page">
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="/" aria-label="Back to ASI Game World homepage" title="Back to project home" data-i18n-aria-label="brand-back" data-i18n-title="brand-title"><img class="new-brand-icon" src="/assets/world-emblem.svg" width="36" height="40" alt=""><span class="brand-name">ASI<span>GAME WORLD</span></span></a>
+    <a class="brand" href="/" aria-label="Back to ASI Game World homepage" title="Back to project home" data-i18n-aria-label="brand-back" data-i18n-title="brand-title"><img class="new-brand-icon" src="/assets/world-emblem.svg" width="29" height="32" alt=""><span class="brand-name">ASI<span>GAME WORLD</span></span></a>
     <nav aria-label="Main navigation">
-      <div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang-set="en" aria-pressed="true">EN</button><button type="button" data-lang-set="zh">中文</button></div>
       <a class="nav-top" href="https://arxiv.org/abs/2610.14807" target="_blank" rel="noopener" data-i18n="nav-paper">Paper</a>
       <a class="nav-top" href="/benchmark/#results" data-i18n="nav-results">Results</a>
       <a class="nav-top" href="/benchmark/#overview" data-i18n="nav-overview">Overview</a>
@@ -384,6 +385,7 @@
         </div>
       </div>
     </nav>
+    <div class="portal-nav-actions"><select class="lang-switch" aria-label="Language"><option value="en">English</option><option value="zh">中文</option></select><a class="button primary nav-play" href="https://agentworld.games/" target="_blank" rel="noopener"><span data-i18n="pill-play">Play ASIWorld</span> <span aria-hidden="true">↗</span></a></div>
   </header>
   <main id="main" class="analysis-shell">
     <header class="analysis-header">
@@ -951,7 +953,7 @@ my pos [[13, [232, 0, 104]]]</div>
     </section>
   </main>
   <footer><a class="brand" href="/" data-i18n="footer-brand">ASI Game World</a></footer>
-  <script src="/i18n.js?v=71"></script>
+  <script src="/i18n.js?v=73"></script>
           <script>
     const tabs = [...document.querySelectorAll('.analysis-tab')];
     const panes = [...document.querySelectorAll('.analysis-pane')];

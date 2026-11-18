@@ -74,6 +74,7 @@
       "stat-authority-val": "143 分钟–7 小时",
       "stat-authority": "kimi-k3.1-pro 用台词推翻了信标。kimi-k3 与 mimo-v2.6-pro 七小时没有进城",
       "drawer-summary": "查看模型真实输入 / 输出原始轨迹日志（全部 15 个前沿模型）",
+      "hero-eyebrow": "自主智能体评测",
       "paper-title": "评测自主智能体<br>在持续生存沙盒中的表现",
       "aff-1": "<sup>1</sup> 光速工作室，腾讯",
       "aff-2": "<sup>2</sup> 香港科技大学",
@@ -86,6 +87,7 @@
       "pill-soon": "即将公开",
       "journey-aria": "查看完整的智能体旅程插图",
       "journey-alt": "体素世界中的智能体旅程示意：Gemini 在工坊，Kimi 在桥上，GLM 与 DeepSeek 在遗迹，白衣 GPT 与橙衣 Claude 在最终战斗场。位置为示意，不是实测轨迹。",
+      "cap-eyebrow": "榜单",
       "cap-title": "智能体能力",
       "cap-scope": "统一 Claude Code 运行框架 · 7 小时开放世界评测 · 前沿大模型与开源轻量模型分赛道",
       "cap-head": "<strong>跨维度</strong>进度，覆盖 4 个玩法领域与 6 项智能体能力。",
@@ -116,16 +118,19 @@
       "small-badge": "开源轻量",
       "read-summary": "怎么读这张总览",
       "read-note": "<strong>01 装备阶位：</strong>最高获得的装备等级（T1 新手 → T2 精铁 → T3 星陨）。<br><strong>02 玩法进度：</strong>生存、战斗、建造、制作四大领域的完成度（0–100%）。<br><strong>03 综合得分：</strong>四个领域的加权总分（20% 生存 + 35% 战斗 + 15% 建造 + 30% 制作）。<br><strong>04 动作策略：</strong>有效动作在生产、建造、地牢战斗、生存补给与移动五类活动上的占比。<br><strong>跑测说明：</strong>Anthropic、OpenAI、Gemini 等前沿模型为单次 7 小时跑测；deepseek-v4.1-flash（5 次跑测）与 Qwen3.5-27B（3 次跑测）展示多局均值 ± 标准差（±SD）。",
+      "overview-eyebrow": "沙盒",
       "overview-title": "概览",
       "abstract": "<strong>ASIWorld</strong> 在持续生存沙盒中评测自主智能体。智能体通过直接动作或可维护的程序脚本，协调生存、战斗、建造与制作，而更早的决定会塑造之后的机会。评测把四个玩法领域与六项核心智能体能力，和执行轨迹、活动分配放在一起看。",
       "overview-aria": "以完整尺寸打开 ASIWorld 概览图",
       "overview-alt": "ASIWorld 概览：持续生存世界、带异步程序执行的智能体框架，以及基于执行记录和世界状态的评测。",
       "overview-cap": "ASIWorld 把持续世界状态、异步智能体执行和跨维度评测连在一起。",
+      "tasks-eyebrow": "评测内容",
       "tasks-title": "评测任务",
       "tasks-lead": "四个相互依赖的玩法领域，通过准备、脚本迭代和不断演化的世界状态，检验持续推进能力。",
       "tasks-aria": "以完整尺寸打开评测任务图",
       "tasks-alt": "生存、战斗、建造和制作上的玩法推进。",
       "tasks-cap": "准备、资源管理和技能习得，把四个相互依赖的玩法领域的进度串起来。",
+      "eval-eyebrow": "诊断",
       "eval-title": "评测与诊断",
       "eval-lead": "覆盖 15 个前沿模型与 Qwen3.5-27B 的玩法进度、能力瓶颈与错误恢复分析。更多玩法机制仍在持续开发，评测榜单将不断更新。",
       "heat-title": "跨维度评测",
@@ -409,6 +414,9 @@
     document.querySelectorAll("[data-lang-set]").forEach(function (btn) {
       btn.setAttribute("aria-pressed", btn.getAttribute("data-lang-set") === lang ? "true" : "false");
     });
+    document.querySelectorAll("select.lang-switch").forEach(function (sel) {
+      if (sel.value !== lang) sel.value = lang;
+    });
     try { localStorage.setItem(KEY, lang); } catch (e) {}
     document.dispatchEvent(new CustomEvent("asiworld:lang", { detail: lang }));
   }
@@ -418,6 +426,12 @@
     if (!btn) return;
     event.preventDefault();
     apply(btn.getAttribute("data-lang-set"));
+  });
+
+  document.addEventListener("change", function (event) {
+    var sel = event.target.closest("select.lang-switch");
+    if (!sel) return;
+    apply(sel.value);
   });
 
   function closeNavDropdowns() {

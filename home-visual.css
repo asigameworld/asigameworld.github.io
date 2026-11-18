@@ -1,27 +1,64 @@
-/* The transparent miniature world belongs to the page, without a screenshot frame. */
-.home-page { --paper: #fafaf7; background: var(--paper); }
-.home-page header { background: transparent; }
-.home-page main { max-width: 1360px; grid-template-columns: .95fr 1.25fr; gap: 24px; padding: 56px 40px 80px; }
-.home-page h1 { color: #244a3d; }
-.home-page .visual { background: transparent; border: 0; box-shadow: none; }
-.home-page .visual img { display: block; width: 100%; height: auto; margin: 0; }
-.home-page .button, .home-page button.guide { border-width: 1px; border-radius: 4px; box-shadow: none; }
-.home-page .primary { background: #244a3d; border-color: #244a3d; }
-.home-page .primary:hover { background: #183b2f; }
-.home-page .actions { gap: 10px; }
+/* Home welcome harmonized with voxel illustration & benchmark palette. */
+.home-page {
+  --paper: #f3f7f5;
+  background: radial-gradient(880px 520px at 95% 0%, rgb(48 108 93 / 10%), transparent 70%),
+              radial-gradient(760px 520px at 5% 55%, rgb(78 137 112 / 8%), transparent 70%),
+              #f3f7f5;
+}
+.home-page header {
+  background: rgb(255 255 255 / 82%);
+  border-bottom: 1px solid color-mix(in srgb, #172e28 14%, transparent);
+}
+.home-page main { max-width: 1440px; grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr); gap: 56px; padding: 48px 48px 72px; }
+.home-page h1 {
+  font-family: "Fusion Pixel", ui-monospace, monospace;
+  color: #172e28;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.home-page h2 { font-weight: 650; letter-spacing: -0.02em; color: #172e28; }
+.home-page .visual {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid color-mix(in srgb, #172e28 14%, transparent);
+  border-radius: 0;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 70%), 0 8px 22px -16px rgb(23 46 40 / 26%);
+  overflow: hidden;
+}
+.home-page .visual::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(#276451 0 0) right top / 12px 2px no-repeat,
+              linear-gradient(#276451 0 0) right top / 2px 12px no-repeat;
+}
+.home-page .visual img { display: block; width: 100%; height: auto; margin: 0; border-radius: 0; }
+.home-page .button, .home-page button.guide { border-width: 1px; border-radius: 0; box-shadow: none; font-weight: 600; min-height: 40px; }
+.home-page .primary { background: #276451; border-color: #276451; color: #ffffff; }
+.home-page .primary:hover { background: #1e4f3f; border-color: #1e4f3f; color: #ffffff; }
+.home-page .secondary, .home-page button.guide {
+  background: rgb(255 255 255 / 90%);
+  border: 1px solid color-mix(in srgb, #172e28 16%, transparent);
+  color: #172e28;
+}
+.home-page .secondary:hover, .home-page button.guide:hover { border-color: #276451; background: #eaf3ef; }
+.home-page .actions { gap: 12px; }
 @media (max-width: 1000px) {
-  .home-page main { grid-template-columns: 1fr; padding: 36px 24px 48px; gap: 20px; }
-  .home-page .copy { max-width: 620px; margin: auto; width: 100%; }
-  .home-page .visual { grid-row: 2; max-width: 680px; margin: 0 auto; width: 100%; }
+  .home-page main { grid-template-columns: 1fr; padding: 36px 28px 48px; gap: 32px; }
+  .home-page .copy { max-width: 640px; margin: 0; width: 100%; }
+  .home-page .visual { grid-row: 2; max-width: none; margin: 0; width: 100%; }
   .home-page h1 span { display: inline; }
   .home-page h2 br { display: none; }
-  .home-page p { max-width: 600px; }
+  .home-page p { max-width: 40em; }
 }
-@media (max-width: 460px) {
-  .home-page main { padding: 28px 22px 36px; }
-  .home-page h1 { font-size: 36px; }
+@media (max-width: 600px) {
+  .home-page header { padding: 14px 16px; }
+  .home-page main { padding: 24px 16px 36px; }
+  .home-page h1 { font-size: 34px; }
   .home-page h1 span { display: block; }
-  .home-page h2 { font-size: 23px; }
-  .home-page .button, .home-page button.guide { padding: 10px 12px; }
+  .home-page h2 { font-size: 22px; }
+  .home-page .button, .home-page button.guide { padding: 10px 16px; }
   .home-page .visual { margin-top: 0; }
 }
