@@ -30,13 +30,14 @@
   letter-spacing: 0;
 }
 .journey-copy .paper-title {
-  font-size: clamp(22px, 2vw, 28px);
+  font-size: clamp(20px, 1.85vw, 27px);
   line-height: 1.38;
   font-weight: 650;
   letter-spacing: -0.02em;
   color: #172e28;
+  text-wrap: balance;
 }
-.benchmark-page .journey-copy h1 { margin: 0 0 22px; max-width: 13em; }
+.benchmark-page .journey-copy h1 { margin: 0 0 22px; max-width: none; }
 .journey-copy .authors { font-size: 13px; line-height: 1.85; margin: 0 0 7px; text-align: left; color: #172e28; }
 .journey-copy .authors span { margin-left: 12px; }
 .journey-copy .affiliations { justify-content: flex-start; font-size: 12px; gap: 4px 16px; color: #53675f; }
@@ -107,9 +108,12 @@
 }
 .journey-full:hover .journey-expand { background: #276451; border-color: #276451; color: #ffffff; }
 .journey-full:focus-visible { outline: 2px solid #276451; outline-offset: 3px; }
+@media (max-width: 1180px) {
+  html[lang="en"] .journey-copy .paper-title br { display: none; }
+}
 @media (max-width: 1100px) {
   .benchmark-page .journey-hero { gap: 36px; padding: 32px 32px 16px; }
-  .journey-copy .paper-title { font-size: 24px; }
+  .journey-copy .paper-title { font-size: clamp(20px, 2vw, 23px); }
 }
 @media (max-width: 800px) {
   .benchmark-page .site-header { gap: 10px 20px; padding: 14px 20px; }
